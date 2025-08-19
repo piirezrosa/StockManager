@@ -1,6 +1,6 @@
 ﻿namespace StockManager
 {
-    partial class FrmRegister
+    partial class FrmRegisterProduct
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRegister));
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRegisterProduct));
             this.LblProduct = new System.Windows.Forms.Label();
             this.TxbProduct = new System.Windows.Forms.TextBox();
             this.BtnRegister = new System.Windows.Forms.Button();
@@ -42,8 +43,22 @@
             this.LblDataReceb = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.DgvRegister = new System.Windows.Forms.DataGridView();
+            this.cJ3027597PR2DataSet = new StockManager.CJ3027597PR2DataSet();
+            this.registroProdutoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.registroProdutoTableAdapter = new StockManager.CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.produtoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataFabDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataValDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataRecebDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvRegister)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cJ3027597PR2DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registroProdutoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LblProduct
@@ -167,21 +182,106 @@
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
             // 
-            // FrmRegister
+            // DgvRegister
+            // 
+            this.DgvRegister.AutoGenerateColumns = false;
+            this.DgvRegister.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvRegister.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.produtoDataGridViewTextBoxColumn,
+            this.quantidadeDataGridViewTextBoxColumn,
+            this.dataFabDataGridViewTextBoxColumn,
+            this.dataValDataGridViewTextBoxColumn,
+            this.dataRecebDataGridViewTextBoxColumn});
+            this.DgvRegister.DataSource = this.registroProdutoBindingSource;
+            this.DgvRegister.Location = new System.Drawing.Point(12, 307);
+            this.DgvRegister.Name = "DgvRegister";
+            this.DgvRegister.Size = new System.Drawing.Size(543, 131);
+            this.DgvRegister.TabIndex = 13;
+            // 
+            // cJ3027597PR2DataSet
+            // 
+            this.cJ3027597PR2DataSet.DataSetName = "CJ3027597PR2DataSet";
+            this.cJ3027597PR2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // registroProdutoBindingSource
+            // 
+            this.registroProdutoBindingSource.DataMember = "RegistroProduto";
+            this.registroProdutoBindingSource.DataSource = this.cJ3027597PR2DataSet;
+            // 
+            // registroProdutoTableAdapter
+            // 
+            this.registroProdutoTableAdapter.ClearBeforeFill = true;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // produtoDataGridViewTextBoxColumn
+            // 
+            this.produtoDataGridViewTextBoxColumn.DataPropertyName = "Produto";
+            this.produtoDataGridViewTextBoxColumn.HeaderText = "Produto";
+            this.produtoDataGridViewTextBoxColumn.Name = "produtoDataGridViewTextBoxColumn";
+            // 
+            // quantidadeDataGridViewTextBoxColumn
+            // 
+            this.quantidadeDataGridViewTextBoxColumn.DataPropertyName = "Quantidade";
+            this.quantidadeDataGridViewTextBoxColumn.HeaderText = "Quantidade";
+            this.quantidadeDataGridViewTextBoxColumn.Name = "quantidadeDataGridViewTextBoxColumn";
+            // 
+            // dataFabDataGridViewTextBoxColumn
+            // 
+            this.dataFabDataGridViewTextBoxColumn.DataPropertyName = "DataFab";
+            this.dataFabDataGridViewTextBoxColumn.HeaderText = "DataFab";
+            this.dataFabDataGridViewTextBoxColumn.Name = "dataFabDataGridViewTextBoxColumn";
+            // 
+            // dataValDataGridViewTextBoxColumn
+            // 
+            this.dataValDataGridViewTextBoxColumn.DataPropertyName = "DataVal";
+            this.dataValDataGridViewTextBoxColumn.HeaderText = "DataVal";
+            this.dataValDataGridViewTextBoxColumn.Name = "dataValDataGridViewTextBoxColumn";
+            // 
+            // dataRecebDataGridViewTextBoxColumn
+            // 
+            this.dataRecebDataGridViewTextBoxColumn.DataPropertyName = "DataReceb";
+            this.dataRecebDataGridViewTextBoxColumn.HeaderText = "DataReceb";
+            this.dataRecebDataGridViewTextBoxColumn.Name = "dataRecebDataGridViewTextBoxColumn";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(383, 98);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "label1";
+            // 
+            // FrmRegisterProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.DgvRegister);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
-            this.Name = "FrmRegister";
+            this.Name = "FrmRegisterProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de Produtos";
+            this.Load += new System.EventHandler(this.FrmRegisterProduct_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvRegister)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cJ3027597PR2DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registroProdutoBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -200,5 +300,16 @@
         private System.Windows.Forms.Label LblDataReceb;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridView DgvRegister;
+        private CJ3027597PR2DataSet cJ3027597PR2DataSet;
+        private System.Windows.Forms.BindingSource registroProdutoBindingSource;
+        private CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter registroProdutoTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn produtoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataFabDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataValDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataRecebDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label1;
     }
 }

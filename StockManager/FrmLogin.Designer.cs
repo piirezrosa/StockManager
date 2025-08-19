@@ -35,6 +35,8 @@
             this.TxbPassword = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BtnCadastrarNovo = new System.Windows.Forms.Button();
+            this.LblCadastro = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +59,7 @@
             // 
             // BtnLogin
             // 
-            this.BtnLogin.Location = new System.Drawing.Point(120, 45);
+            this.BtnLogin.Location = new System.Drawing.Point(120, 44);
             this.BtnLogin.Name = "BtnLogin";
             this.BtnLogin.Size = new System.Drawing.Size(75, 23);
             this.BtnLogin.TabIndex = 2;
@@ -69,9 +71,9 @@
             // 
             this.TxbPassword.Location = new System.Drawing.Point(14, 60);
             this.TxbPassword.Name = "TxbPassword";
-            this.TxbPassword.PasswordChar = '*';
             this.TxbPassword.Size = new System.Drawing.Size(100, 20);
             this.TxbPassword.TabIndex = 3;
+            this.TxbPassword.UseSystemPasswordChar = true;
             // 
             // panel1
             // 
@@ -95,12 +97,33 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
+            // BtnCadastrarNovo
+            // 
+            this.BtnCadastrarNovo.Location = new System.Drawing.Point(489, 365);
+            this.BtnCadastrarNovo.Name = "BtnCadastrarNovo";
+            this.BtnCadastrarNovo.Size = new System.Drawing.Size(75, 23);
+            this.BtnCadastrarNovo.TabIndex = 4;
+            this.BtnCadastrarNovo.Text = "Cadastre-se";
+            this.BtnCadastrarNovo.UseVisualStyleBackColor = true;
+            this.BtnCadastrarNovo.Click += new System.EventHandler(this.BtnCadastro_Click);
+            // 
+            // LblCadastro
+            // 
+            this.LblCadastro.AutoSize = true;
+            this.LblCadastro.Location = new System.Drawing.Point(471, 349);
+            this.LblCadastro.Name = "LblCadastro";
+            this.LblCadastro.Size = new System.Drawing.Size(114, 13);
+            this.LblCadastro.TabIndex = 6;
+            this.LblCadastro.Text = "Não tem um cadastro?";
+            // 
             // FrmStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(597, 400);
+            this.Controls.Add(this.LblCadastro);
+            this.Controls.Add(this.BtnCadastrarNovo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Name = "FrmStock";
@@ -110,6 +133,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -121,6 +145,8 @@
         private System.Windows.Forms.TextBox TxbPassword;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button BtnCadastrarNovo;
+        private System.Windows.Forms.Label LblCadastro;
     }
 }
 

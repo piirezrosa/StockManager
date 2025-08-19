@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace StockManager
 {
-    public partial class FrmRegister : Form
+    public partial class FrmRegisterProduct : Form
     {
-        public FrmRegister()
+        public FrmRegisterProduct()
         {
             InitializeComponent();
         }
@@ -39,6 +39,13 @@ namespace StockManager
                 "Dados Digitados",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+        }
+
+        private void FrmRegisterProduct_Load(object sender, EventArgs e)
+        {
+            // TODO: esta linha de código carrega dados na tabela 'cJ3027597PR2DataSet.RegistroProduto'. Você pode movê-la ou removê-la conforme necessário.
+            this.registroProdutoTableAdapter.Fill(this.cJ3027597PR2DataSet.RegistroProduto);
+
         }
     }
 }
