@@ -26,5 +26,19 @@ namespace StockManager
         {
 
         }
+
+        private void BtnRegister_Click(object sender, EventArgs e)
+        {
+            string Product = TxbProduct.Text;
+            string Quantity = TxbQuantity.Text;
+            string Data_Fab = TxbDataFab.Text;
+            string Data_Val = TxbDataVal.Text;
+            string Data_Receb = TxbDataReceb.Text;
+            MessageBox.Show(
+                $"Produto registrado com sucesso!",
+                "Dados Digitados",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
     }
 }

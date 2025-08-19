@@ -21,6 +21,13 @@ namespace StockManager
         {
             if(TxbLogin.Text == "Admin" && TxbPassword.Text == "Admin")
             {
+                string user = TxbLogin.Text;
+                string password = TxbPassword.Text;
+                MessageBox.Show(
+                $"Usuário: {user}\nSenha: {password}",
+                "Dados Digitados",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
                 FrmRegister product = new FrmRegister();
                 this.Visible = false;
                 product.ShowDialog();
