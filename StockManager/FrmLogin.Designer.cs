@@ -33,12 +33,14 @@
             this.TxbLogin = new System.Windows.Forms.TextBox();
             this.BtnLogin = new System.Windows.Forms.Button();
             this.TxbPassword = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PnlLogin = new System.Windows.Forms.Panel();
+            this.PbxLogin = new System.Windows.Forms.PictureBox();
             this.BtnCadastrarNovo = new System.Windows.Forms.Button();
             this.LblCadastro = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.BtnConsultProducts = new System.Windows.Forms.Button();
+            this.LblConsultProducts = new System.Windows.Forms.Label();
+            this.PnlLogin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxLogin)).BeginInit();
             this.SuspendLayout();
             // 
             // LblLogin
@@ -75,27 +77,27 @@
             this.TxbPassword.TabIndex = 3;
             this.TxbPassword.UseSystemPasswordChar = true;
             // 
-            // panel1
+            // PnlLogin
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.LblLogin);
-            this.panel1.Controls.Add(this.TxbPassword);
-            this.panel1.Controls.Add(this.TxbLogin);
-            this.panel1.Controls.Add(this.BtnLogin);
-            this.panel1.Location = new System.Drawing.Point(189, 233);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
-            this.panel1.TabIndex = 4;
+            this.PnlLogin.BackColor = System.Drawing.SystemColors.Control;
+            this.PnlLogin.Controls.Add(this.LblLogin);
+            this.PnlLogin.Controls.Add(this.TxbPassword);
+            this.PnlLogin.Controls.Add(this.TxbLogin);
+            this.PnlLogin.Controls.Add(this.BtnLogin);
+            this.PnlLogin.Location = new System.Drawing.Point(189, 233);
+            this.PnlLogin.Name = "PnlLogin";
+            this.PnlLogin.Size = new System.Drawing.Size(200, 100);
+            this.PnlLogin.TabIndex = 4;
             // 
-            // pictureBox1
+            // PbxLogin
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(189, 35);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 192);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
+            this.PbxLogin.Image = ((System.Drawing.Image)(resources.GetObject("PbxLogin.Image")));
+            this.PbxLogin.Location = new System.Drawing.Point(189, 35);
+            this.PbxLogin.Name = "PbxLogin";
+            this.PbxLogin.Size = new System.Drawing.Size(200, 192);
+            this.PbxLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PbxLogin.TabIndex = 5;
+            this.PbxLogin.TabStop = false;
             // 
             // BtnCadastrarNovo
             // 
@@ -116,22 +118,43 @@
             this.LblCadastro.TabIndex = 6;
             this.LblCadastro.Text = "Não tem um cadastro?";
             // 
+            // BtnConsultProducts
+            // 
+            this.BtnConsultProducts.Location = new System.Drawing.Point(39, 365);
+            this.BtnConsultProducts.Name = "BtnConsultProducts";
+            this.BtnConsultProducts.Size = new System.Drawing.Size(75, 23);
+            this.BtnConsultProducts.TabIndex = 7;
+            this.BtnConsultProducts.Text = "Consultar";
+            this.BtnConsultProducts.UseVisualStyleBackColor = true;
+            this.BtnConsultProducts.Click += new System.EventHandler(this.BtnConsultProducts_Click);
+            // 
+            // LblConsultProducts
+            // 
+            this.LblConsultProducts.AutoSize = true;
+            this.LblConsultProducts.Location = new System.Drawing.Point(12, 348);
+            this.LblConsultProducts.Name = "LblConsultProducts";
+            this.LblConsultProducts.Size = new System.Drawing.Size(150, 13);
+            this.LblConsultProducts.TabIndex = 8;
+            this.LblConsultProducts.Text = "Deseja consultar os produtos?";
+            // 
             // FrmStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(597, 400);
+            this.Controls.Add(this.LblConsultProducts);
+            this.Controls.Add(this.BtnConsultProducts);
             this.Controls.Add(this.LblCadastro);
             this.Controls.Add(this.BtnCadastrarNovo);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.PbxLogin);
+            this.Controls.Add(this.PnlLogin);
             this.Name = "FrmStock";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestão de Estoque";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.PnlLogin.ResumeLayout(false);
+            this.PnlLogin.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxLogin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,10 +166,12 @@
         private System.Windows.Forms.TextBox TxbLogin;
         private System.Windows.Forms.Button BtnLogin;
         private System.Windows.Forms.TextBox TxbPassword;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel PnlLogin;
+        private System.Windows.Forms.PictureBox PbxLogin;
         private System.Windows.Forms.Button BtnCadastrarNovo;
         private System.Windows.Forms.Label LblCadastro;
+        private System.Windows.Forms.Button BtnConsultProducts;
+        private System.Windows.Forms.Label LblConsultProducts;
     }
 }
 

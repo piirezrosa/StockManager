@@ -29,34 +29,35 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastro));
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.PnlNewUser = new System.Windows.Forms.Panel();
             this.LblCadastro = new System.Windows.Forms.Label();
             this.BtnCadastrar = new System.Windows.Forms.Button();
             this.TxbNewPassword = new System.Windows.Forms.TextBox();
             this.TxbNewUser = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.PbxNewUser = new System.Windows.Forms.PictureBox();
+            this.PnlNewUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxNewUser)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // PnlNewUser
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.LblCadastro);
-            this.panel1.Controls.Add(this.BtnCadastrar);
-            this.panel1.Controls.Add(this.TxbNewPassword);
-            this.panel1.Controls.Add(this.TxbNewUser);
-            this.panel1.Location = new System.Drawing.Point(291, 190);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
-            this.panel1.TabIndex = 0;
+            this.PnlNewUser.BackColor = System.Drawing.SystemColors.Control;
+            this.PnlNewUser.Controls.Add(this.LblCadastro);
+            this.PnlNewUser.Controls.Add(this.BtnCadastrar);
+            this.PnlNewUser.Controls.Add(this.TxbNewPassword);
+            this.PnlNewUser.Controls.Add(this.TxbNewUser);
+            this.PnlNewUser.Location = new System.Drawing.Point(291, 190);
+            this.PnlNewUser.Name = "PnlNewUser";
+            this.PnlNewUser.Size = new System.Drawing.Size(200, 100);
+            this.PnlNewUser.TabIndex = 0;
             // 
             // LblCadastro
             // 
             this.LblCadastro.AutoSize = true;
-            this.LblCadastro.Location = new System.Drawing.Point(69, 12);
+            this.LblCadastro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCadastro.Location = new System.Drawing.Point(55, 15);
             this.LblCadastro.Name = "LblCadastro";
-            this.LblCadastro.Size = new System.Drawing.Size(63, 13);
+            this.LblCadastro.Size = new System.Drawing.Size(92, 16);
             this.LblCadastro.TabIndex = 3;
             this.LblCadastro.Text = "Cadastre-se";
             // 
@@ -85,15 +86,15 @@
             this.TxbNewUser.Size = new System.Drawing.Size(100, 20);
             this.TxbNewUser.TabIndex = 0;
             // 
-            // pictureBox1
+            // PbxNewUser
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(206, 62);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(371, 107);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.PbxNewUser.Image = ((System.Drawing.Image)(resources.GetObject("PbxNewUser.Image")));
+            this.PbxNewUser.Location = new System.Drawing.Point(206, 62);
+            this.PbxNewUser.Name = "PbxNewUser";
+            this.PbxNewUser.Size = new System.Drawing.Size(371, 107);
+            this.PbxNewUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PbxNewUser.TabIndex = 1;
+            this.PbxNewUser.TabStop = false;
             // 
             // FrmCadastro
             // 
@@ -101,25 +102,25 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.PbxNewUser);
+            this.Controls.Add(this.PnlNewUser);
             this.Name = "FrmCadastro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Usuário";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.PnlNewUser.ResumeLayout(false);
+            this.PnlNewUser.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxNewUser)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel PnlNewUser;
         private System.Windows.Forms.Button BtnCadastrar;
         private System.Windows.Forms.TextBox TxbNewPassword;
         private System.Windows.Forms.TextBox TxbNewUser;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox PbxNewUser;
         private System.Windows.Forms.Label LblCadastro;
     }
 }

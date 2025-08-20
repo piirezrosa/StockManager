@@ -71,5 +71,13 @@ namespace StockManager
             frm.ShowDialog();
             this.Visible = true;
         }
+
+        private void BtnConsultProducts_Click(object sender, EventArgs e)
+        {
+            FrmConsultProducts frm = new FrmConsultProducts();
+            this.Visible = false;
+            frm.ShowDialog();
+            this.Visible = true;
+        }
     }
 }
