@@ -37,7 +37,7 @@ namespace StockManager
         private void CarregarProdutos(string nome = "")
         {
             string connectionString =
-                "Data Source=localhost;Initial Catalog=ExemploLoginDB;Integrated Security=True";
+                "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
 
             using (SqlConnection conexao = new SqlConnection(connectionString))
             {
@@ -46,7 +46,7 @@ namespace StockManager
                     conexao.Open();
 
                     string query = @"SELECT Id, Produto, Quantidade, DataFab, DataVal, DataReceb 
-                                     FROM Produtos
+                                     FROM RegistroProduto
                                      WHERE Produto LIKE @nome";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conexao);
