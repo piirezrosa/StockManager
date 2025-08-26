@@ -28,25 +28,34 @@ namespace StockManager
             CarregarProdutos();
         }
 
-        private void CarregarProdutos()
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            string nome = TxbBuscarNome.Text.Trim();
+            CarregarProdutos(nome);
+        }
+
+        private void CarregarProdutos(string nome = "")
         {
             string connectionString =
-                "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
+                "Data Source=localhost;Initial Catalog=ExemploLoginDB;Integrated Security=True";
 
             using (SqlConnection conexao = new SqlConnection(connectionString))
             {
                 try
                 {
                     conexao.Open();
-                    string query = "SELECT Id, Produto, Quantidade, DataFab, DataVal, DataReceb FROM Produtos";
+
+                    string query = @"SELECT Id, Produto, Quantidade, DataFab, DataVal, DataReceb 
+                                     FROM Produtos
+                                     WHERE Produto LIKE @nome";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conexao);
+                    adapter.SelectCommand.Parameters.AddWithValue("@nome", "%" + nome + "%");
+
                     DataTable tabela = new DataTable();
                     adapter.Fill(tabela);
 
                     DgvConsultProducts.DataSource = tabela;
-
-                    // Ajusta colunas automaticamente
                     DgvConsultProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
                 catch (Exception ex)

@@ -28,24 +28,94 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConsultProducts));
             this.DgvConsultProducts = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.produtoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataFabDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataValDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataRecebDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.registroProdutoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cJ3027597PR2DataSet = new StockManager.CJ3027597PR2DataSet();
             this.LblConsultProducts = new System.Windows.Forms.Label();
             this.BtnRechargeConsultProducts = new System.Windows.Forms.Button();
             this.PnlConsultProducts = new System.Windows.Forms.Panel();
             this.PbxConsultProducts = new System.Windows.Forms.PictureBox();
+            this.registroProdutoTableAdapter = new StockManager.CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter();
+            this.TxbBuscarNome = new System.Windows.Forms.TextBox();
+            this.BtnBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvConsultProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registroProdutoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cJ3027597PR2DataSet)).BeginInit();
             this.PnlConsultProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxConsultProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // DgvConsultProducts
             // 
+            this.DgvConsultProducts.AutoGenerateColumns = false;
             this.DgvConsultProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvConsultProducts.Location = new System.Drawing.Point(21, 31);
+            this.DgvConsultProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.produtoDataGridViewTextBoxColumn,
+            this.quantidadeDataGridViewTextBoxColumn,
+            this.dataFabDataGridViewTextBoxColumn,
+            this.dataValDataGridViewTextBoxColumn,
+            this.dataRecebDataGridViewTextBoxColumn});
+            this.DgvConsultProducts.DataSource = this.registroProdutoBindingSource;
+            this.DgvConsultProducts.Location = new System.Drawing.Point(21, 19);
             this.DgvConsultProducts.Name = "DgvConsultProducts";
-            this.DgvConsultProducts.Size = new System.Drawing.Size(240, 150);
+            this.DgvConsultProducts.Size = new System.Drawing.Size(396, 172);
             this.DgvConsultProducts.TabIndex = 0;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // produtoDataGridViewTextBoxColumn
+            // 
+            this.produtoDataGridViewTextBoxColumn.DataPropertyName = "Produto";
+            this.produtoDataGridViewTextBoxColumn.HeaderText = "Produto";
+            this.produtoDataGridViewTextBoxColumn.Name = "produtoDataGridViewTextBoxColumn";
+            // 
+            // quantidadeDataGridViewTextBoxColumn
+            // 
+            this.quantidadeDataGridViewTextBoxColumn.DataPropertyName = "Quantidade";
+            this.quantidadeDataGridViewTextBoxColumn.HeaderText = "Quantidade";
+            this.quantidadeDataGridViewTextBoxColumn.Name = "quantidadeDataGridViewTextBoxColumn";
+            // 
+            // dataFabDataGridViewTextBoxColumn
+            // 
+            this.dataFabDataGridViewTextBoxColumn.DataPropertyName = "DataFab";
+            this.dataFabDataGridViewTextBoxColumn.HeaderText = "DataFab";
+            this.dataFabDataGridViewTextBoxColumn.Name = "dataFabDataGridViewTextBoxColumn";
+            // 
+            // dataValDataGridViewTextBoxColumn
+            // 
+            this.dataValDataGridViewTextBoxColumn.DataPropertyName = "DataVal";
+            this.dataValDataGridViewTextBoxColumn.HeaderText = "DataVal";
+            this.dataValDataGridViewTextBoxColumn.Name = "dataValDataGridViewTextBoxColumn";
+            // 
+            // dataRecebDataGridViewTextBoxColumn
+            // 
+            this.dataRecebDataGridViewTextBoxColumn.DataPropertyName = "DataReceb";
+            this.dataRecebDataGridViewTextBoxColumn.HeaderText = "DataReceb";
+            this.dataRecebDataGridViewTextBoxColumn.Name = "dataRecebDataGridViewTextBoxColumn";
+            // 
+            // registroProdutoBindingSource
+            // 
+            this.registroProdutoBindingSource.DataMember = "RegistroProduto";
+            this.registroProdutoBindingSource.DataSource = this.cJ3027597PR2DataSet;
+            // 
+            // cJ3027597PR2DataSet
+            // 
+            this.cJ3027597PR2DataSet.DataSetName = "CJ3027597PR2DataSet";
+            this.cJ3027597PR2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // LblConsultProducts
             // 
@@ -59,7 +129,7 @@
             // 
             // BtnRechargeConsultProducts
             // 
-            this.BtnRechargeConsultProducts.Location = new System.Drawing.Point(315, 92);
+            this.BtnRechargeConsultProducts.Location = new System.Drawing.Point(423, 91);
             this.BtnRechargeConsultProducts.Name = "BtnRechargeConsultProducts";
             this.BtnRechargeConsultProducts.Size = new System.Drawing.Size(75, 23);
             this.BtnRechargeConsultProducts.TabIndex = 2;
@@ -71,9 +141,9 @@
             this.PnlConsultProducts.BackColor = System.Drawing.SystemColors.Control;
             this.PnlConsultProducts.Controls.Add(this.DgvConsultProducts);
             this.PnlConsultProducts.Controls.Add(this.BtnRechargeConsultProducts);
-            this.PnlConsultProducts.Location = new System.Drawing.Point(182, 108);
+            this.PnlConsultProducts.Location = new System.Drawing.Point(152, 108);
             this.PnlConsultProducts.Name = "PnlConsultProducts";
-            this.PnlConsultProducts.Size = new System.Drawing.Size(429, 208);
+            this.PnlConsultProducts.Size = new System.Drawing.Size(506, 206);
             this.PnlConsultProducts.TabIndex = 3;
             // 
             // PbxConsultProducts
@@ -86,12 +156,34 @@
             this.PbxConsultProducts.TabIndex = 4;
             this.PbxConsultProducts.TabStop = false;
             // 
+            // registroProdutoTableAdapter
+            // 
+            this.registroProdutoTableAdapter.ClearBeforeFill = true;
+            // 
+            // TxbBuscarNome
+            // 
+            this.TxbBuscarNome.Location = new System.Drawing.Point(173, 320);
+            this.TxbBuscarNome.Name = "TxbBuscarNome";
+            this.TxbBuscarNome.Size = new System.Drawing.Size(100, 20);
+            this.TxbBuscarNome.TabIndex = 5;
+            // 
+            // BtnBuscar
+            // 
+            this.BtnBuscar.Location = new System.Drawing.Point(280, 320);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.BtnBuscar.TabIndex = 6;
+            this.BtnBuscar.Text = "Buscar";
+            this.BtnBuscar.UseVisualStyleBackColor = true;
+            // 
             // FrmConsultProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BtnBuscar);
+            this.Controls.Add(this.TxbBuscarNome);
             this.Controls.Add(this.PnlConsultProducts);
             this.Controls.Add(this.LblConsultProducts);
             this.Controls.Add(this.PbxConsultProducts);
@@ -99,6 +191,8 @@
             this.Text = "FrmConsultProducts";
             this.Load += new System.EventHandler(this.FrmConsultProducts_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvConsultProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registroProdutoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cJ3027597PR2DataSet)).EndInit();
             this.PnlConsultProducts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PbxConsultProducts)).EndInit();
             this.ResumeLayout(false);
@@ -113,5 +207,16 @@
         private System.Windows.Forms.Button BtnRechargeConsultProducts;
         private System.Windows.Forms.Panel PnlConsultProducts;
         private System.Windows.Forms.PictureBox PbxConsultProducts;
+        private CJ3027597PR2DataSet cJ3027597PR2DataSet;
+        private System.Windows.Forms.BindingSource registroProdutoBindingSource;
+        private CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter registroProdutoTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn produtoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataFabDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataValDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataRecebDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox TxbBuscarNome;
+        private System.Windows.Forms.Button BtnBuscar;
     }
 }
