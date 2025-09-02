@@ -29,6 +29,9 @@ namespace StockManager
         private void FrmConsultProducts_Load(object sender, EventArgs e)
         {
             CarregarProdutos(null);
+            DgvConsultProducts.EnableHeadersVisualStyles = false;
+            DgvConsultProducts.DefaultCellStyle.SelectionBackColor = Color.Blue;
+            DgvConsultProducts.DefaultCellStyle.SelectionForeColor = Color.White;
         }
 
         private void BtnRechargeConsultProducts_Click(object sender, EventArgs e)
@@ -40,6 +43,28 @@ namespace StockManager
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             CarregarProdutos(TxbBuscarNome.Text?.Trim());
+            string query = "SELECT * FROM RegistroProduto WHERE 1=1";
+
+            if (!string.IsNullOrWhiteSpace(TxbBuscarNome.Text))
+                query += " AND Produto LIKE @Nome";
+
+            if (chkLowStock.Checked)
+                query += " AND Quantidade < 10"; // exemplo de estoque baixo
+
+            if (chkExpirySoon.Checked)
+                query += " AND DataVal <= DATEADD(DAY, 30, GETDATE())"; // próximos 30 dias
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                if (!string.IsNullOrWhiteSpace(TxbBuscarNome.Text))
+                    cmd.Parameters.AddWithValue("@Nome", "%" + TxbBuscarNome.Text + "%");
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                DgvConsultProducts.DataSource = dt;
+            }
         }
 
         private void CarregarProdutos(string nome = "")
@@ -134,6 +159,28 @@ namespace StockManager
                     // Remove da grid
                     DgvConsultProducts.Rows.RemoveAt(e.RowIndex);
                     MessageBox.Show("Produto excluído com sucesso!");
+                }
+            }
+        }
+
+        private void DgvConsultProducts_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Verifica se estamos na coluna DataVal (ajuste para o nome correto do seu banco)
+            if (DgvConsultProducts.Columns[e.ColumnIndex].Name == "DataVal" && e.Value != null)
+            {
+                DateTime validade;
+                if (DateTime.TryParse(e.Value.ToString(), out validade))
+                {
+                    if (validade < DateTime.Now)
+                    {
+                        e.CellStyle.BackColor = Color.Red;       // Vencido
+                        e.CellStyle.ForeColor = Color.White;
+                    }
+                    else if (validade < DateTime.Now.AddDays(30))
+                    {
+                        e.CellStyle.BackColor = Color.Yellow;    // Perto de vencer
+                        e.CellStyle.ForeColor = Color.Black;
+                    }
                 }
             }
         }

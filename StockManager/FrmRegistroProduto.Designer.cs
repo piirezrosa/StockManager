@@ -92,7 +92,6 @@
             this.LblQuantity.Size = new System.Drawing.Size(62, 13);
             this.LblQuantity.TabIndex = 7;
             this.LblQuantity.Text = "Quantidade";
-            this.LblQuantity.Click += new System.EventHandler(this.label1_Click);
             // 
             // LblDataFab
             // 
@@ -120,7 +119,6 @@
             this.LblDataReceb.Size = new System.Drawing.Size(65, 13);
             this.LblDataReceb.TabIndex = 10;
             this.LblDataReceb.Text = "Data Receb";
-            this.LblDataReceb.Click += new System.EventHandler(this.label4_Click);
             // 
             // DtpDataReceb
             // 
@@ -171,7 +169,7 @@
             // 
             this.LblRegisterProduct.AutoSize = true;
             this.LblRegisterProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblRegisterProduct.Location = new System.Drawing.Point(307, 104);
+            this.LblRegisterProduct.Location = new System.Drawing.Point(311, 104);
             this.LblRegisterProduct.Name = "LblRegisterProduct";
             this.LblRegisterProduct.Size = new System.Drawing.Size(183, 24);
             this.LblRegisterProduct.TabIndex = 14;

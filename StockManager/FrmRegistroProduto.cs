@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace StockManager
 {
@@ -16,16 +17,6 @@ namespace StockManager
         public FrmRegisterProduct()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void BtnRegister_Click(object sender, EventArgs e)
@@ -50,9 +41,21 @@ namespace StockManager
             DateTime dataVal = DtpDataVal.Value;
             DateTime dataReceb = DtpDataReceb.Value;
 
+            if (dataFab > DateTime.Now)
+            {
+                MessageBox.Show("A data de fabricação não pode ser no futuro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (dataVal <= dataFab)
             {
                 MessageBox.Show("A data de validade deve ser maior que a data de fabricação!");
+                return;
+            }
+
+            if (dataReceb > DateTime.Now)
+            {
+                MessageBox.Show("A data de recebimento não pode ser no futuro!"); ;
                 return;
             }
 
