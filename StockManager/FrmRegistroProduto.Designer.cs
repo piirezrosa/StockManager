@@ -38,7 +38,6 @@
             this.LblDataFab = new System.Windows.Forms.Label();
             this.LblDataVal = new System.Windows.Forms.Label();
             this.LblDataReceb = new System.Windows.Forms.Label();
-            this.PnlRegisterProduct = new System.Windows.Forms.Panel();
             this.DtpDataReceb = new System.Windows.Forms.DateTimePicker();
             this.DtpDataVal = new System.Windows.Forms.DateTimePicker();
             this.DtpDataFab = new System.Windows.Forms.DateTimePicker();
@@ -47,7 +46,6 @@
             this.cJ3027597PR2DataSet = new StockManager.CJ3027597PR2DataSet();
             this.registroProdutoTableAdapter = new StockManager.CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter();
             this.LblRegisterProduct = new System.Windows.Forms.Label();
-            this.PnlRegisterProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxRegisterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registroProdutoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cJ3027597PR2DataSet)).BeginInit();
@@ -56,7 +54,7 @@
             // LblProduct
             // 
             this.LblProduct.AutoSize = true;
-            this.LblProduct.Location = new System.Drawing.Point(34, 19);
+            this.LblProduct.Location = new System.Drawing.Point(254, 154);
             this.LblProduct.Name = "LblProduct";
             this.LblProduct.Size = new System.Drawing.Size(44, 13);
             this.LblProduct.TabIndex = 0;
@@ -64,14 +62,14 @@
             // 
             // TxbProduct
             // 
-            this.TxbProduct.Location = new System.Drawing.Point(98, 16);
+            this.TxbProduct.Location = new System.Drawing.Point(325, 147);
             this.TxbProduct.Name = "TxbProduct";
             this.TxbProduct.Size = new System.Drawing.Size(135, 20);
             this.TxbProduct.TabIndex = 1;
             // 
             // BtnRegister
             // 
-            this.BtnRegister.Location = new System.Drawing.Point(239, 67);
+            this.BtnRegister.Location = new System.Drawing.Point(482, 199);
             this.BtnRegister.Name = "BtnRegister";
             this.BtnRegister.Size = new System.Drawing.Size(75, 23);
             this.BtnRegister.TabIndex = 2;
@@ -81,7 +79,7 @@
             // 
             // TxbQuantity
             // 
-            this.TxbQuantity.Location = new System.Drawing.Point(98, 43);
+            this.TxbQuantity.Location = new System.Drawing.Point(325, 173);
             this.TxbQuantity.Name = "TxbQuantity";
             this.TxbQuantity.Size = new System.Drawing.Size(135, 20);
             this.TxbQuantity.TabIndex = 3;
@@ -89,7 +87,7 @@
             // LblQuantity
             // 
             this.LblQuantity.AutoSize = true;
-            this.LblQuantity.Location = new System.Drawing.Point(34, 46);
+            this.LblQuantity.Location = new System.Drawing.Point(254, 180);
             this.LblQuantity.Name = "LblQuantity";
             this.LblQuantity.Size = new System.Drawing.Size(62, 13);
             this.LblQuantity.TabIndex = 7;
@@ -99,7 +97,7 @@
             // LblDataFab
             // 
             this.LblDataFab.AutoSize = true;
-            this.LblDataFab.Location = new System.Drawing.Point(34, 73);
+            this.LblDataFab.Location = new System.Drawing.Point(254, 205);
             this.LblDataFab.Name = "LblDataFab";
             this.LblDataFab.Size = new System.Drawing.Size(51, 13);
             this.LblDataFab.TabIndex = 8;
@@ -108,7 +106,7 @@
             // LblDataVal
             // 
             this.LblDataVal.AutoSize = true;
-            this.LblDataVal.Location = new System.Drawing.Point(34, 100);
+            this.LblDataVal.Location = new System.Drawing.Point(254, 231);
             this.LblDataVal.Name = "LblDataVal";
             this.LblDataVal.Size = new System.Drawing.Size(48, 13);
             this.LblDataVal.TabIndex = 9;
@@ -117,49 +115,30 @@
             // LblDataReceb
             // 
             this.LblDataReceb.AutoSize = true;
-            this.LblDataReceb.Location = new System.Drawing.Point(34, 127);
+            this.LblDataReceb.Location = new System.Drawing.Point(254, 257);
             this.LblDataReceb.Name = "LblDataReceb";
             this.LblDataReceb.Size = new System.Drawing.Size(65, 13);
             this.LblDataReceb.TabIndex = 10;
             this.LblDataReceb.Text = "Data Receb";
             this.LblDataReceb.Click += new System.EventHandler(this.label4_Click);
             // 
-            // PnlRegisterProduct
-            // 
-            this.PnlRegisterProduct.BackColor = System.Drawing.SystemColors.Control;
-            this.PnlRegisterProduct.Controls.Add(this.DtpDataReceb);
-            this.PnlRegisterProduct.Controls.Add(this.DtpDataVal);
-            this.PnlRegisterProduct.Controls.Add(this.DtpDataFab);
-            this.PnlRegisterProduct.Controls.Add(this.TxbProduct);
-            this.PnlRegisterProduct.Controls.Add(this.LblDataReceb);
-            this.PnlRegisterProduct.Controls.Add(this.TxbQuantity);
-            this.PnlRegisterProduct.Controls.Add(this.BtnRegister);
-            this.PnlRegisterProduct.Controls.Add(this.LblQuantity);
-            this.PnlRegisterProduct.Controls.Add(this.LblProduct);
-            this.PnlRegisterProduct.Controls.Add(this.LblDataFab);
-            this.PnlRegisterProduct.Controls.Add(this.LblDataVal);
-            this.PnlRegisterProduct.Location = new System.Drawing.Point(229, 131);
-            this.PnlRegisterProduct.Name = "PnlRegisterProduct";
-            this.PnlRegisterProduct.Size = new System.Drawing.Size(327, 161);
-            this.PnlRegisterProduct.TabIndex = 11;
-            // 
             // DtpDataReceb
             // 
-            this.DtpDataReceb.Location = new System.Drawing.Point(98, 127);
+            this.DtpDataReceb.Location = new System.Drawing.Point(325, 251);
             this.DtpDataReceb.Name = "DtpDataReceb";
             this.DtpDataReceb.Size = new System.Drawing.Size(135, 20);
             this.DtpDataReceb.TabIndex = 17;
             // 
             // DtpDataVal
             // 
-            this.DtpDataVal.Location = new System.Drawing.Point(98, 100);
+            this.DtpDataVal.Location = new System.Drawing.Point(325, 225);
             this.DtpDataVal.Name = "DtpDataVal";
             this.DtpDataVal.Size = new System.Drawing.Size(135, 20);
             this.DtpDataVal.TabIndex = 16;
             // 
             // DtpDataFab
             // 
-            this.DtpDataFab.Location = new System.Drawing.Point(98, 69);
+            this.DtpDataFab.Location = new System.Drawing.Point(325, 199);
             this.DtpDataFab.Name = "DtpDataFab";
             this.DtpDataFab.Size = new System.Drawing.Size(135, 20);
             this.DtpDataFab.TabIndex = 15;
@@ -167,9 +146,9 @@
             // PbxRegisterProduct
             // 
             this.PbxRegisterProduct.Image = ((System.Drawing.Image)(resources.GetObject("PbxRegisterProduct.Image")));
-            this.PbxRegisterProduct.Location = new System.Drawing.Point(627, 307);
+            this.PbxRegisterProduct.Location = new System.Drawing.Point(-17, -4);
             this.PbxRegisterProduct.Name = "PbxRegisterProduct";
-            this.PbxRegisterProduct.Size = new System.Drawing.Size(216, 214);
+            this.PbxRegisterProduct.Size = new System.Drawing.Size(821, 461);
             this.PbxRegisterProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PbxRegisterProduct.TabIndex = 12;
             this.PbxRegisterProduct.TabStop = false;
@@ -204,15 +183,23 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DtpDataReceb);
             this.Controls.Add(this.LblRegisterProduct);
+            this.Controls.Add(this.DtpDataVal);
+            this.Controls.Add(this.DtpDataFab);
+            this.Controls.Add(this.TxbProduct);
+            this.Controls.Add(this.LblDataReceb);
+            this.Controls.Add(this.LblDataVal);
+            this.Controls.Add(this.TxbQuantity);
+            this.Controls.Add(this.LblDataFab);
+            this.Controls.Add(this.BtnRegister);
+            this.Controls.Add(this.LblProduct);
+            this.Controls.Add(this.LblQuantity);
             this.Controls.Add(this.PbxRegisterProduct);
-            this.Controls.Add(this.PnlRegisterProduct);
             this.Name = "FrmRegisterProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de Produtos";
             this.Load += new System.EventHandler(this.FrmRegisterProduct_Load);
-            this.PnlRegisterProduct.ResumeLayout(false);
-            this.PnlRegisterProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxRegisterProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.registroProdutoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cJ3027597PR2DataSet)).EndInit();
@@ -231,7 +218,6 @@
         private System.Windows.Forms.Label LblDataFab;
         private System.Windows.Forms.Label LblDataVal;
         private System.Windows.Forms.Label LblDataReceb;
-        private System.Windows.Forms.Panel PnlRegisterProduct;
         private System.Windows.Forms.PictureBox PbxRegisterProduct;
         private CJ3027597PR2DataSet cJ3027597PR2DataSet;
         private System.Windows.Forms.BindingSource registroProdutoBindingSource;

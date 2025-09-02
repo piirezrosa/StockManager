@@ -17,8 +17,7 @@ namespace StockManager
         {
             InitializeComponent();
         }
-
-        private void BtnCadastrar_Click(object sender, EventArgs e)
+        private void BtnCadastrar_Click_1(object sender, EventArgs e)
         {
             string usuario = TxbNewUser.Text;
             string senha = TxbNewPassword.Text;

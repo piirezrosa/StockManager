@@ -20,8 +20,8 @@ namespace StockManager
         
         private void BtnProduct_Click(object sender, EventArgs e)
         {
-            string usuario = TxbLogin.Text;
-            string senha = TxbPassword.Text;
+            string usuario = TxbLogin.Text.Trim();
+            string senha = TxbPassword.Text.Trim();
 
             // String de conexão (ajuste Data Source para o nome/instância do seu SQL Server)
             string connectionString =
@@ -45,9 +45,10 @@ namespace StockManager
 
                         if (count > 0)
                         {
-                            FrmRegisterProduct product = new FrmRegisterProduct();
+                            MessageBox.Show("Login realizado com sucesso!");
                             this.Visible = false;
-                            product.ShowDialog();
+                            FrmMenu frm = new FrmMenu(usuario);
+                            frm.ShowDialog();
                             this.Visible = true;
                         }
                         else
@@ -67,14 +68,6 @@ namespace StockManager
         private void BtnCadastro_Click(object sender, EventArgs e)
         {
             FrmCadastro frm = new FrmCadastro();
-            this.Visible = false;
-            frm.ShowDialog();
-            this.Visible = true;
-        }
-
-        private void BtnConsultProducts_Click(object sender, EventArgs e)
-        {
-            FrmConsultProducts frm = new FrmConsultProducts();
             this.Visible = false;
             frm.ShowDialog();
             this.Visible = true;

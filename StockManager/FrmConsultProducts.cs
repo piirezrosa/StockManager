@@ -16,22 +16,28 @@ namespace StockManager
         public FrmConsultProducts()
         {
             InitializeComponent();
+
+            this.Load += FrmConsultProducts_Load;
+            BtnBuscar.Click += BtnBuscar_Click;
+            BtnRechargeConsultProducts.Click += BtnRechargeConsultProducts_Click;
+
+            TxbBuscarNome.KeyDown += (s, e) => { if (e.KeyCode == Keys.Enter) BtnBuscar.PerformClick(); };
         }
 
         private void FrmConsultProducts_Load(object sender, EventArgs e)
         {
-            CarregarProdutos();
+            CarregarProdutos(null);
         }
 
         private void BtnRechargeConsultProducts_Click(object sender, EventArgs e)
         {
-            CarregarProdutos();
+            TxbBuscarNome.Clear();
+            CarregarProdutos(null);
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            string nome = TxbBuscarNome.Text.Trim();
-            CarregarProdutos(nome);
+            CarregarProdutos(TxbBuscarNome.Text?.Trim());
         }
 
         private void CarregarProdutos(string nome = "")
