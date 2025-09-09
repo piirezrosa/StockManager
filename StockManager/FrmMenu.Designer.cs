@@ -35,6 +35,8 @@
             this.menuCadastrarProduto = new System.Windows.Forms.ToolStripMenuItem();
             this.menuConsultarProduto = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSair = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCadastrarUsuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblUsuario = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PbxMenu)).BeginInit();
             this.menuStripMenu.SuspendLayout();
             this.SuspendLayout();
@@ -64,7 +66,8 @@
             // 
             this.menuProdutos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuCadastrarProduto,
-            this.menuConsultarProduto});
+            this.menuConsultarProduto,
+            this.menuCadastrarUsuario});
             this.menuProdutos.Name = "menuProdutos";
             this.menuProdutos.Size = new System.Drawing.Size(67, 20);
             this.menuProdutos.Text = "Produtos";
@@ -73,7 +76,7 @@
             // 
             this.menuCadastrarProduto.Name = "menuCadastrarProduto";
             this.menuCadastrarProduto.Size = new System.Drawing.Size(180, 22);
-            this.menuCadastrarProduto.Text = "Cadastrar";
+            this.menuCadastrarProduto.Text = "Cadastrar produto";
             this.menuCadastrarProduto.Click += new System.EventHandler(this.menuCadastrarProduto_Click_1);
             // 
             // menuConsultarProduto
@@ -90,11 +93,27 @@
             this.menuSair.Text = "Sair";
             this.menuSair.Click += new System.EventHandler(this.menuSair_Click_1);
             // 
+            // menuCadastrarUsuario
+            // 
+            this.menuCadastrarUsuario.Name = "menuCadastrarUsuario";
+            this.menuCadastrarUsuario.Size = new System.Drawing.Size(180, 22);
+            this.menuCadastrarUsuario.Text = "Cadastrar usuario";
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Location = new System.Drawing.Point(305, 136);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(35, 13);
+            this.lblUsuario.TabIndex = 2;
+            this.lblUsuario.Text = "label1";
+            // 
             // FrmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.menuStripMenu);
             this.Controls.Add(this.PbxMenu);
             this.MainMenuStrip = this.menuStripMenu;
@@ -118,5 +137,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuCadastrarProduto;
         private System.Windows.Forms.ToolStripMenuItem menuConsultarProduto;
         private System.Windows.Forms.ToolStripMenuItem menuSair;
+        private System.Windows.Forms.ToolStripMenuItem menuCadastrarUsuario;
+        private System.Windows.Forms.Label lblUsuario;
     }
 }

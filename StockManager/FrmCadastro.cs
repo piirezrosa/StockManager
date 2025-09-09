@@ -16,13 +16,15 @@ namespace StockManager
         public FrmCadastro()
         {
             InitializeComponent();
+            CmbNivelAcesso.Items.Add("Admin");
+            CmbNivelAcesso.Items.Add("Operador");
         }
         private void BtnCadastrar_Click_1(object sender, EventArgs e)
         {
-            string usuario = TxbNewUser.Text;
-            string senha = TxbNewPassword.Text;
-
-            if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(senha))
+            if (string.IsNullOrWhiteSpace(TxbNewName.Text) ||
+                string.IsNullOrWhiteSpace(TxbNewLogin.Text) ||
+                string.IsNullOrWhiteSpace(TxbNewPassword.Text) ||
+                CmbNivelAcesso.SelectedIndex == -1)
             {
                 MessageBox.Show("Preencha todos os campos!");
                 return;
@@ -31,37 +33,24 @@ namespace StockManager
             string connectionString =
                 "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
 
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                try
-                {
-                    conexao.Open();
+                conn.Open();
+                string query = "INSERT INTO Usuarios (Nome, Login, Senha, NivelAcesso) VALUES (@Nome, @Login, @Senha, @NivelAcesso)";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Nome", TxbNewName.Text);
+                cmd.Parameters.AddWithValue("@Login", TxbNewLogin.Text);
+                cmd.Parameters.AddWithValue("@Senha", TxbNewPassword.Text); // depois pode aplicar hash
+                cmd.Parameters.AddWithValue("@NivelAcesso", CmbNivelAcesso.SelectedItem.ToString());
 
-                    string query = "INSERT INTO Usuarios (Usuario, Senha) VALUES (@usuario, @senha)";
-
-                    using (SqlCommand cmd = new SqlCommand(query, conexao))
-                    {
-                        cmd.Parameters.AddWithValue("@usuario", usuario);
-                        cmd.Parameters.AddWithValue("@senha", senha);
-
-                        cmd.ExecuteNonQuery();
-
-                        MessageBox.Show("Usuário cadastrado com sucesso!",
-                            "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Limpa os campos
-                        TxbNewUser.Clear();
-                        TxbNewPassword.Clear();
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    if (ex.Number == 2627) // violação UNIQUE (usuário já existe)
-                        MessageBox.Show("Este usuário já existe!");
-                    else
-                        MessageBox.Show("Erro no banco: " + ex.Message);
-                }
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Usuário cadastrado com sucesso!");
             }
+
+            TxbNewName.Clear();
+            TxbNewLogin.Clear();
+            TxbNewPassword.Clear();
+            CmbNivelAcesso.SelectedIndex = -1;
         }
     }
 }

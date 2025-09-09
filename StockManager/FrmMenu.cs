@@ -14,22 +14,24 @@ namespace StockManager
 {
     public partial class FrmMenu : Form
     {
-        private readonly bool isAdmin;
-        public FrmMenu(string usuario)
+        private string nivelAcesso;
+        private int usuarioId;
+        private string nomeUsuario;
+        public FrmMenu(string nivel, int id, string nome)
         {
             InitializeComponent();
-
-            if (usuario.Equals("Admin", StringComparison.OrdinalIgnoreCase))
-                isAdmin = true;
-            else
-                isAdmin = false;
+            this.nivelAcesso = nivel;
+            this.usuarioId = id;
+            this.nomeUsuario = nome;
         }
         private void FrmMenu_Load_1(object sender, EventArgs e)
         {
-            if (!isAdmin)
+            lblUsuario.Text = $"Usuário: {nomeUsuario} ({nivelAcesso})";
+
+            if (nivelAcesso == "Operador")
             {
                 menuCadastrarProduto.Enabled = false;
-                menuCadastrarProduto.Visible = false;
+                menuCadastrarUsuario.Enabled = false;
             }
         }
         private void menuCadastrarProduto_Click_1(object sender, EventArgs e)
@@ -52,6 +54,5 @@ namespace StockManager
         {
             this.Close();
         }
-
     }
 }

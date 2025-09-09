@@ -43,12 +43,12 @@
             this.LblConsultProducts = new System.Windows.Forms.Label();
             this.BtnRechargeConsultProducts = new System.Windows.Forms.Button();
             this.PnlConsultProducts = new System.Windows.Forms.Panel();
+            this.chkExpirySoon = new System.Windows.Forms.CheckBox();
+            this.chkLowStock = new System.Windows.Forms.CheckBox();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.TxbBuscarNome = new System.Windows.Forms.TextBox();
             this.PbxConsultProducts = new System.Windows.Forms.PictureBox();
             this.registroProdutoTableAdapter = new StockManager.CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter();
-            this.chkLowStock = new System.Windows.Forms.CheckBox();
-            this.chkExpirySoon = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvConsultProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registroProdutoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cJ3027597PR2DataSet)).BeginInit();
@@ -77,7 +77,7 @@
             this.DgvConsultProducts.Size = new System.Drawing.Size(798, 191);
             this.DgvConsultProducts.TabIndex = 0;
             this.DgvConsultProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvConsultProducts_CellContentClick);
-            this.DgvConsultProducts.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgvConsultProducts_CellFormatting);
+            this.DgvConsultProducts.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvConsultProducts_CellEnter);
             this.DgvConsultProducts.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvConsultProducts_CellValueChanged);
             // 
             // idDataGridViewTextBoxColumn
@@ -173,6 +173,27 @@
             this.PnlConsultProducts.Size = new System.Drawing.Size(902, 245);
             this.PnlConsultProducts.TabIndex = 3;
             // 
+            // chkExpirySoon
+            // 
+            this.chkExpirySoon.AutoSize = true;
+            this.chkExpirySoon.Location = new System.Drawing.Point(307, 216);
+            this.chkExpirySoon.Name = "chkExpirySoon";
+            this.chkExpirySoon.Size = new System.Drawing.Size(107, 17);
+            this.chkExpirySoon.TabIndex = 8;
+            this.chkExpirySoon.Text = "Validade Próxima";
+            this.chkExpirySoon.UseVisualStyleBackColor = true;
+            this.chkExpirySoon.CheckedChanged += new System.EventHandler(this.chkExpirySoon_CheckedChanged);
+            // 
+            // chkLowStock
+            // 
+            this.chkLowStock.AutoSize = true;
+            this.chkLowStock.Location = new System.Drawing.Point(208, 217);
+            this.chkLowStock.Name = "chkLowStock";
+            this.chkLowStock.Size = new System.Drawing.Size(93, 17);
+            this.chkLowStock.TabIndex = 7;
+            this.chkLowStock.Text = "Estoque baixo";
+            this.chkLowStock.UseVisualStyleBackColor = true;
+            // 
             // BtnBuscar
             // 
             this.BtnBuscar.Location = new System.Drawing.Point(127, 214);
@@ -203,26 +224,6 @@
             // registroProdutoTableAdapter
             // 
             this.registroProdutoTableAdapter.ClearBeforeFill = true;
-            // 
-            // chkLowStock
-            // 
-            this.chkLowStock.AutoSize = true;
-            this.chkLowStock.Location = new System.Drawing.Point(208, 217);
-            this.chkLowStock.Name = "chkLowStock";
-            this.chkLowStock.Size = new System.Drawing.Size(93, 17);
-            this.chkLowStock.TabIndex = 7;
-            this.chkLowStock.Text = "Estoque baixo";
-            this.chkLowStock.UseVisualStyleBackColor = true;
-            // 
-            // chkExpirySoon
-            // 
-            this.chkExpirySoon.AutoSize = true;
-            this.chkExpirySoon.Location = new System.Drawing.Point(307, 216);
-            this.chkExpirySoon.Name = "chkExpirySoon";
-            this.chkExpirySoon.Size = new System.Drawing.Size(107, 17);
-            this.chkExpirySoon.TabIndex = 8;
-            this.chkExpirySoon.Text = "Validade Próxima";
-            this.chkExpirySoon.UseVisualStyleBackColor = true;
             // 
             // FrmConsultProducts
             // 

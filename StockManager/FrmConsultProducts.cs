@@ -65,11 +65,37 @@ namespace StockManager
                 da.Fill(dt);
                 DgvConsultProducts.DataSource = dt;
             }
+            if(chkExpirySoon.Checked)
+                ChangeCellColor();
+        }
+
+        private void ChangeCellColor()
+        {
+            foreach (DataGridViewRow row in DgvConsultProducts.Rows)
+            {
+                if (row.Cells[4] != null)
+                {
+                    DateTime validade;
+                    DateTime.TryParse(row.Cells[4].Value.ToString(), out validade);
+
+                    if (validade < DateTime.Now)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Red;       // Vencido
+                        row.DefaultCellStyle.ForeColor = Color.White;
+                    }
+                    else if (validade < DateTime.Now.AddDays(30))
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Yellow;    // Perto de vencer
+                        row.DefaultCellStyle.ForeColor = Color.Black;
+                    }
+                }
+
+            }
         }
 
         private void CarregarProdutos(string nome = "")
         {
-            
+
 
             using (SqlConnection conexao = new SqlConnection(connectionString))
             {
@@ -100,8 +126,9 @@ namespace StockManager
         private void DgvConsultProducts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             // Pega a linha alterada
-            if (e.RowIndex >0 ) {
-            DataGridViewRow row = DgvConsultProducts.Rows[e.RowIndex];
+            if (e.RowIndex > 0)
+            {
+                DataGridViewRow row = DgvConsultProducts.Rows[e.RowIndex];
 
                 int id = int.Parse(row.Cells[0].Value.ToString());
                 string produto = row.Cells[1].Value.ToString();
@@ -162,27 +189,30 @@ namespace StockManager
                 }
             }
         }
-
-        private void DgvConsultProducts_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void DgvConsultProducts_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            // Verifica se estamos na coluna DataVal (ajuste para o nome correto do seu banco)
-            if (DgvConsultProducts.Columns[e.ColumnIndex].Name == "DataVal" && e.Value != null)
+            if (DgvConsultProducts.Columns[e.ColumnIndex].Name == "DataVal")
             {
                 DateTime validade;
-                if (DateTime.TryParse(e.Value.ToString(), out validade))
+                if (DateTime.TryParse(DgvConsultProducts.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out validade))
                 {
                     if (validade < DateTime.Now)
                     {
-                        e.CellStyle.BackColor = Color.Red;       // Vencido
-                        e.CellStyle.ForeColor = Color.White;
+                        DgvConsultProducts.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Red;       // Vencido
+                        DgvConsultProducts.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.White;
                     }
                     else if (validade < DateTime.Now.AddDays(30))
                     {
-                        e.CellStyle.BackColor = Color.Yellow;    // Perto de vencer
-                        e.CellStyle.ForeColor = Color.Black;
+                        DgvConsultProducts.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Yellow;    // Perto de vencer
+                        DgvConsultProducts.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.Black;
                     }
                 }
             }
+        }
+
+        private void chkExpirySoon_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeCellColor();
         }
     }
 }

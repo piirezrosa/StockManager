@@ -17,7 +17,7 @@ namespace StockManager
         {
             InitializeComponent();
         }
-        
+
         private void BtnProduct_Click(object sender, EventArgs e)
         {
             string usuario = TxbLogin.Text.Trim();
@@ -29,42 +29,40 @@ namespace StockManager
 
             using (SqlConnection conexao = new SqlConnection(connectionString))
             {
-                try
+                conexao.Open();
+
+                string query = "SELECT COUNT(*) FROM Usuarios WHERE Usuario=@usuario AND Senha=@senha";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conexao.Open();
+                    conn.Open();
+                    query = "SELECT * FROM Usuarios WHERE Login = @Login AND Senha = @Senha";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Login", TxbLogin.Text);
+                    cmd.Parameters.AddWithValue("@Senha", TxbPassword.Text);
 
-                    string query = "SELECT COUNT(*) FROM Usuarios WHERE Usuario=@usuario AND Senha=@senha";
+                    SqlDataReader reader = cmd.ExecuteReader();
 
-                    using (SqlCommand cmd = new SqlCommand(query, conexao))
+                    if (reader.Read())
                     {
-                        // Evita SQL Injection
-                        cmd.Parameters.AddWithValue("@usuario", usuario);
-                        cmd.Parameters.AddWithValue("@senha", senha);
+                        string nivel = reader["NivelAcesso"].ToString();
+                        int usuarioId = Convert.ToInt32(reader["Id"]);
+                        string nomeUsuario = reader["Nome"].ToString();
 
-                        int count = (int)cmd.ExecuteScalar();
+                        MessageBox.Show($"Bem-vindo, {nomeUsuario}!");
 
-                        if (count > 0)
-                        {
-                            MessageBox.Show("Login realizado com sucesso!");
-                            this.Visible = false;
-                            FrmMenu frm = new FrmMenu(usuario);
-                            frm.ShowDialog();
-                            this.Visible = true;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Usuário ou senha inválidos.",
-                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        FrmMenu formMenu = new FrmMenu(nivel, usuarioId, nomeUsuario);
+                        this.Visible = false;
+                        formMenu.ShowDialog();
+                        this.Visible = true;
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao conectar no banco: " + ex.Message);
+                    else
+                    {
+                        MessageBox.Show("Usuário ou senha inválidos!");
+                    }
                 }
             }
         }
-
         private void BtnCadastro_Click(object sender, EventArgs e)
         {
             FrmCadastro frm = new FrmCadastro();
