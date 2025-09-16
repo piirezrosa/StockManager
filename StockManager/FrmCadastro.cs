@@ -13,6 +13,7 @@ namespace StockManager
 {
     public partial class FrmCadastro : Form
     {
+        string usuario = Sessao.NomeUsuario;
         public FrmCadastro()
         {
             InitializeComponent();
@@ -42,7 +43,6 @@ namespace StockManager
                 cmd.Parameters.AddWithValue("@Login", TxbNewLogin.Text);
                 cmd.Parameters.AddWithValue("@Senha", TxbNewPassword.Text); // depois pode aplicar hash
                 cmd.Parameters.AddWithValue("@NivelAcesso", CmbNivelAcesso.SelectedItem.ToString());
-
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Usuário cadastrado com sucesso!");
             }

@@ -54,5 +54,13 @@ namespace StockManager
         {
             this.Close();
         }
+
+        private void menuCadastrarUsuario_Click(object sender, EventArgs e)
+        {
+            FrmCadastroFunc frm = new FrmCadastroFunc();
+            this.Visible = false;
+            frm.ShowDialog();
+            this.Visible = true;
+        }
     }
 }

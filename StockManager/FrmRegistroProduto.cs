@@ -78,9 +78,8 @@ namespace StockManager
                         cmd.Parameters.AddWithValue("@dataFab", dataFab);
                         cmd.Parameters.AddWithValue("@dataVal", dataVal);
                         cmd.Parameters.AddWithValue("@dataReceb", dataReceb);
-
                         cmd.ExecuteNonQuery();
-
+                        LogHelper.RegistrarLog("Registrou Produto");
                         MessageBox.Show("Produto cadastrado com sucesso!",
                             "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

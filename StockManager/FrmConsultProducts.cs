@@ -13,8 +13,8 @@ namespace StockManager
 {
     public partial class FrmConsultProducts : Form
     {
-        private string connectionString =
-                "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
+        string usuario = Sessao.NomeUsuario;
+        private string connectionString = "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
         public FrmConsultProducts()
         {
             InitializeComponent();
@@ -125,7 +125,6 @@ namespace StockManager
 
         private void DgvConsultProducts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            // Pega a linha alterada
             if (e.RowIndex > 0)
             {
                 DataGridViewRow row = DgvConsultProducts.Rows[e.RowIndex];
@@ -137,7 +136,6 @@ namespace StockManager
                 DateTime dataVal = DateTime.Parse(row.Cells[4].Value.ToString());
                 DateTime dataReceb = DateTime.Parse(row.Cells[5].Value.ToString());
 
-                // Atualiza o banco
                 string query = @"UPDATE RegistroProduto 
                      SET Produto = @Produto, Quantidade = @Quantidade, DataFab = @DataFab, DataVal = @DataVal, DataReceb = @DataReceb
                      WHERE Id = @Id";
@@ -157,6 +155,7 @@ namespace StockManager
                         cmd.ExecuteNonQuery();
                     }
                 }
+                LogHelper.RegistrarLog($"Atualizou produto ID {id}");
                 MessageBox.Show("Produto atualizado com sucesso!");
 
             }
@@ -167,11 +166,11 @@ namespace StockManager
             if (DgvConsultProducts.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
                 string produto = DgvConsultProducts.Rows[e.RowIndex].Cells[1].Value.ToString();
-
+                int id = int.Parse(DgvConsultProducts.Rows[e.RowIndex].Cells[0].Value.ToString());
                 DialogResult result = MessageBox.Show($"Deseja excluir o produto {produto}?", "Confirmar exclusão", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    // Remove do banco
+                    LogHelper.RegistrarLog($"Excluiu produto ID {id}");
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
                         conn.Open();
@@ -182,8 +181,6 @@ namespace StockManager
                             cmd.ExecuteNonQuery();
                         }
                     }
-
-                    // Remove da grid
                     DgvConsultProducts.Rows.RemoveAt(e.RowIndex);
                     MessageBox.Show("Produto excluído com sucesso!");
                 }

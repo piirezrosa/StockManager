@@ -48,7 +48,10 @@ namespace StockManager
                         string nivel = reader["NivelAcesso"].ToString();
                         int usuarioId = Convert.ToInt32(reader["Id"]);
                         string nomeUsuario = reader["Nome"].ToString();
-
+                        Sessao.UsuarioId = usuarioId;
+                        Sessao.NomeUsuario = nomeUsuario;
+                        Sessao.NivelAcesso = nivel;
+                        LogHelper.RegistrarLog("Login realizado com sucesso");
                         MessageBox.Show($"Bem-vindo, {nomeUsuario}!");
 
                         FrmMenu formMenu = new FrmMenu(nivel, usuarioId, nomeUsuario);
@@ -58,6 +61,7 @@ namespace StockManager
                     }
                     else
                     {
+                        LogHelper.RegistrarLog("Tentativa de login falhou");
                         MessageBox.Show("Usuário ou senha inválidos!");
                     }
                 }
