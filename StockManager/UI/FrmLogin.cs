@@ -22,32 +22,15 @@ namespace StockManager
         {
             string usuario = TxbLogin.Text.Trim();
             string senha = TxbPassword.Text.Trim();
-
-            string connectionString =
-                "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
-
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            UserDAL userDAL = new UserDAL();
+            string messageReturned = userDAL.LoginVerification(usuario, senha);
+            MessageBox.Show(messageReturned);
+            if (Sessao.UsuarioId != 0)
             {
-                conexao.Open();
-
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    bool loginValido = SegurancaHelper.ValidarLogin(TxbLogin.Text, TxbPassword.Text, conn);
-
-                    if (loginValido)
-                    {
-                        MessageBox.Show($"Bem-vindo {Sessao.NomeUsuario}!");
-                        FrmMenu menu = new FrmMenu(Sessao.NivelAcesso, Sessao.UsuarioId, Sessao.NomeUsuario);
-                        this.Hide();
-                        menu.ShowDialog();
-                        this.Show();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Usuário ou senha inválidos!");
-                    }
-                }
+                FrmMenu menu = new FrmMenu(Sessao.NivelAcesso, Sessao.UsuarioId, Sessao.NomeUsuario);
+                this.Hide();
+                menu.ShowDialog();
+                this.Show();
             }
         }
         private void BtnCadastro_Click(object sender, EventArgs e)

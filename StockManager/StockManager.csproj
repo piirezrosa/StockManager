@@ -46,68 +46,70 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CJ3027597PR2DataSet.Designer.cs">
+    <Compile Include="DAL\CJ3027597PR2DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CJ3027597PR2DataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="FrmCadastroFunc.cs">
+    <Compile Include="UI\FrmCadastroFunc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmCadastroFunc.Designer.cs">
+    <Compile Include="UI\FrmCadastroFunc.Designer.cs">
       <DependentUpon>FrmCadastroFunc.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmConsultProducts.cs">
+    <Compile Include="UI\FrmConsultProducts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmConsultProducts.Designer.cs">
+    <Compile Include="UI\FrmConsultProducts.Designer.cs">
       <DependentUpon>FrmConsultProducts.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmLogin.cs">
+    <Compile Include="UI\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmLogin.Designer.cs">
+    <Compile Include="UI\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmCadastro.cs">
+    <Compile Include="UI\FrmCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmCadastro.Designer.cs">
+    <Compile Include="UI\FrmCadastro.Designer.cs">
       <DependentUpon>FrmCadastro.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMenu.cs">
+    <Compile Include="UI\FrmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMenu.Designer.cs">
+    <Compile Include="UI\FrmMenu.Designer.cs">
       <DependentUpon>FrmMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmRegistroProduto.cs">
+    <Compile Include="UI\FrmRegistroProduto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmRegistroProduto.Designer.cs">
+    <Compile Include="UI\FrmRegistroProduto.Designer.cs">
       <DependentUpon>FrmRegistroProduto.cs</DependentUpon>
     </Compile>
-    <Compile Include="LogHelper.cs" />
+    <Compile Include="BLL\LogHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SegurancaHelper.cs" />
-    <Compile Include="Sessao.cs" />
-    <EmbeddedResource Include="FrmCadastroFunc.resx">
+    <Compile Include="BLL\SegurancaHelper.cs" />
+    <Compile Include="BLL\Sessao.cs" />
+    <Compile Include="DAL\UserDAL.cs" />
+    <Compile Include="DAL\User.cs" />
+    <EmbeddedResource Include="UI\FrmCadastroFunc.resx">
       <DependentUpon>FrmCadastroFunc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmConsultProducts.resx">
+    <EmbeddedResource Include="UI\FrmConsultProducts.resx">
       <DependentUpon>FrmConsultProducts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmLogin.resx">
+    <EmbeddedResource Include="UI\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmCadastro.resx">
+    <EmbeddedResource Include="UI\FrmCadastro.resx">
       <DependentUpon>FrmCadastro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMenu.resx">
+    <EmbeddedResource Include="UI\FrmMenu.resx">
       <DependentUpon>FrmMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmRegistroProduto.resx">
+    <EmbeddedResource Include="UI\FrmRegistroProduto.resx">
       <DependentUpon>FrmRegistroProduto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -119,15 +121,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="CJ3027597PR2DataSet.xsc">
+    <None Include="DAL\CJ3027597PR2DataSet.xsc">
       <DependentUpon>CJ3027597PR2DataSet.xsd</DependentUpon>
     </None>
-    <None Include="CJ3027597PR2DataSet.xsd">
+    <None Include="DAL\CJ3027597PR2DataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>CJ3027597PR2DataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="CJ3027597PR2DataSet.xss">
+    <None Include="DAL\CJ3027597PR2DataSet.xss">
       <DependentUpon>CJ3027597PR2DataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
