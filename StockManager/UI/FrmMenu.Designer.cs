@@ -38,8 +38,7 @@
             this.menuSair = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PbxMenu)).BeginInit();
-            this.menuStripMenu.SuspendLayout();
-            this.SuspendLayout();
+            //this.menuStripMenu.SuspendLayout();
             // 
             // PbxMenu
             // 

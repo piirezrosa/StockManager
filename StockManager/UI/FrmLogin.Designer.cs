@@ -54,7 +54,7 @@
             this.BtnCadastrarNovo.Location = new System.Drawing.Point(24, 309);
             this.BtnCadastrarNovo.Name = "BtnCadastrarNovo";
             this.BtnCadastrarNovo.Size = new System.Drawing.Size(75, 23);
-            this.BtnCadastrarNovo.TabIndex = 4;
+            this.BtnCadastrarNovo.TabIndex = 3;
             this.BtnCadastrarNovo.Text = "Cadastre-se";
             this.BtnCadastrarNovo.UseVisualStyleBackColor = true;
             this.BtnCadastrarNovo.Click += new System.EventHandler(this.BtnCadastro_Click);
@@ -83,14 +83,14 @@
             this.TxbLogin.Location = new System.Drawing.Point(247, 216);
             this.TxbLogin.Name = "TxbLogin";
             this.TxbLogin.Size = new System.Drawing.Size(100, 20);
-            this.TxbLogin.TabIndex = 1;
+            this.TxbLogin.TabIndex = 0;
             // 
             // TxbPassword
             // 
             this.TxbPassword.Location = new System.Drawing.Point(247, 242);
             this.TxbPassword.Name = "TxbPassword";
             this.TxbPassword.Size = new System.Drawing.Size(100, 20);
-            this.TxbPassword.TabIndex = 3;
+            this.TxbPassword.TabIndex = 1;
             this.TxbPassword.UseSystemPasswordChar = true;
             // 
             // LblLogin

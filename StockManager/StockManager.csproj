@@ -90,6 +90,7 @@
     <Compile Include="LogHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SegurancaHelper.cs" />
     <Compile Include="Sessao.cs" />
     <EmbeddedResource Include="FrmCadastroFunc.resx">
       <DependentUpon>FrmCadastroFunc.cs</DependentUpon>

@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace StockManager {
+namespace StockManager.DAL {
     
     
     /// <summary>
@@ -726,7 +726,7 @@ namespace StockManager {
         }
     }
 }
-namespace StockManager.CJ3027597PR2DataSetTableAdapters {
+namespace StockManager.DAL.CJ3027597PR2DataSetTableAdapters {
     
     
     /// <summary>

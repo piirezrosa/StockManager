@@ -41,7 +41,7 @@ namespace StockManager
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Nome", TxbNewName.Text);
                 cmd.Parameters.AddWithValue("@Login", TxbNewLogin.Text);
-                cmd.Parameters.AddWithValue("@Senha", TxbNewPassword.Text); // depois pode aplicar hash
+                cmd.Parameters.AddWithValue("@Senha", SegurancaHelper.GerarHash(TxbNewPassword.Text)); // depois pode aplicar hash
                 cmd.Parameters.AddWithValue("@NivelAcesso", CmbNivelAcesso.SelectedItem.ToString());
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Usuário cadastrado com sucesso!");

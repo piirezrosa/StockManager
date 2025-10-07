@@ -23,7 +23,6 @@ namespace StockManager
             string usuario = TxbLogin.Text.Trim();
             string senha = TxbPassword.Text.Trim();
 
-            // String de conexão (ajuste Data Source para o nome/instância do seu SQL Server)
             string connectionString =
                 "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
 
@@ -31,37 +30,21 @@ namespace StockManager
             {
                 conexao.Open();
 
-                string query = "SELECT COUNT(*) FROM Usuarios WHERE Usuario=@usuario AND Senha=@senha";
-
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    query = "SELECT * FROM Usuarios WHERE Login = @Login AND Senha = @Senha";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Login", TxbLogin.Text);
-                    cmd.Parameters.AddWithValue("@Senha", TxbPassword.Text);
+                    bool loginValido = SegurancaHelper.ValidarLogin(TxbLogin.Text, TxbPassword.Text, conn);
 
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
+                    if (loginValido)
                     {
-                        string nivel = reader["NivelAcesso"].ToString();
-                        int usuarioId = Convert.ToInt32(reader["Id"]);
-                        string nomeUsuario = reader["Nome"].ToString();
-                        Sessao.UsuarioId = usuarioId;
-                        Sessao.NomeUsuario = nomeUsuario;
-                        Sessao.NivelAcesso = nivel;
-                        LogHelper.RegistrarLog("Login realizado com sucesso");
-                        MessageBox.Show($"Bem-vindo, {nomeUsuario}!");
-
-                        FrmMenu formMenu = new FrmMenu(nivel, usuarioId, nomeUsuario);
-                        this.Visible = false;
-                        formMenu.ShowDialog();
-                        this.Visible = true;
+                        MessageBox.Show($"Bem-vindo {Sessao.NomeUsuario}!");
+                        FrmMenu menu = new FrmMenu(Sessao.NivelAcesso, Sessao.UsuarioId, Sessao.NomeUsuario);
+                        this.Hide();
+                        menu.ShowDialog();
+                        this.Show();
                     }
                     else
                     {
-                        LogHelper.RegistrarLog("Tentativa de login falhou");
                         MessageBox.Show("Usuário ou senha inválidos!");
                     }
                 }
