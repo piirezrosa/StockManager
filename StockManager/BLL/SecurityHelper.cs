@@ -6,7 +6,7 @@ using System.Net;
 
 namespace StockManager
 {
-    public static class SegurancaHelper
+    public static class SecurityHelper
     {
         // 🔑 Gera um hash da senha
         public static string GerarHash(string senha)
@@ -19,38 +19,6 @@ namespace StockManager
                     builder.Append(b.ToString("x2"));
                 return builder.ToString();
             }
-        }
-
-        // 🔐 Valida login
-        public static bool ValidarLogin(string usuario, string senha, SqlConnection conn)
-        {
-            string senhaHash = GerarHash(senha);
-
-            string sql = "SELECT * FROM Usuarios WHERE Login=@usuario AND Senha=@senha";
-            using (SqlCommand cmd = new SqlCommand(sql, conn))
-            {
-                cmd.Parameters.AddWithValue("@usuario", usuario);
-                cmd.Parameters.AddWithValue("@senha", senhaHash);
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        // Preenche sessão
-                        Sessao.UsuarioId = Convert.ToInt32(reader["Id"]);
-                        Sessao.NomeUsuario = reader["Nome"].ToString();
-                        Sessao.NivelAcesso = reader["NivelAcesso"].ToString();
-
-                        // Log de login
-                        RegistrarLog("Login realizado com sucesso");
-                        return true;
-                    }
-                }
-            }
-
-            // Se não encontrou, registra tentativa
-            RegistrarLog("Tentativa de login falhou");
-            return false;
         }
 
         // 📝 Registra log
@@ -68,7 +36,7 @@ namespace StockManager
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@UsuarioId", Sessao.UsuarioId);
+                    cmd.Parameters.AddWithValue("@UsuarioId", Sessao.UsuarioID);
                     cmd.Parameters.AddWithValue("@NomeUsuario", Sessao.NomeUsuario ?? "Não logado");
                     cmd.Parameters.AddWithValue("@Acao", acao);
                     cmd.Parameters.AddWithValue("@DataHora", DateTime.Now);

@@ -8,55 +8,70 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StockManager.BLL;
+using StockManager.DAL;
 
-namespace StockManager
+namespace StockManager.UI
 {
-    public partial class FrmStock : Form
+    public partial class FrmLogin : Form
     {
-        public FrmStock()
+        private readonly UserBLL _usuarioBLL = new UserBLL();
+
+        public FrmLogin()
         {
             InitializeComponent();
         }
 
-        private async void BtnProduct_Click(object sender, EventArgs e)
+        private async void BtnLogin_Click_1(object sender, EventArgs e)
         {
+            // Desabilita o botão para evitar múltiplos cliques
             BtnLogin.Enabled = false;
 
-            string usuario = TxbLogin.Text.Trim();
-            string senha = TxbPassword.Text.Trim();
+            string login = TxbLogin.Text.Trim(); // Corrigido: TxtLogin
+            string senha = TxbPassword.Text.Trim(); // Corrigido: TxtSenha
 
-            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(senha))
+            // Validação de campos obrigatórios
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(senha))
             {
-                MessageBox.Show("Preencha todos os campos!");
+                MessageBox.Show("Preencha todos os campos!", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 BtnLogin.Enabled = true;
                 return;
             }
 
-            UserDAL userDAL = new UserDAL();
-
-            // Executa o login em outra thread (sem travar a interface)
-            string messageReturned = await Task.Run(() => userDAL.LoginVerification(usuario, senha));
-
-            MessageBox.Show(messageReturned);
-
-            if (Sessao.UsuarioId != 0)
+            try
             {
-                FrmMenu menu = new FrmMenu(Sessao.NivelAcesso, Sessao.UsuarioId, Sessao.NomeUsuario);
-                this.Hide();
-                menu.ShowDialog();
-                this.Show();
+                // CORREÇÃO: Criar conexão e passar como parâmetro
+                using (var conexao = new ConexaoBD().AbrirConexao())
+                {
+                    bool loginValido = await Task.Run(() =>
+                        _usuarioBLL.ValidarLogin(login, senha, conexao));
+
+                    if (loginValido)
+                    {
+                        // Abre o menu principal
+                        FrmMenu menu = new FrmMenu(Sessao.NivelAcesso, Sessao.UsuarioID, Sessao.NomeUsuario);
+                        this.Hide();
+                        menu.ShowDialog();
+                        this.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuário ou senha inválidos.", "Erro",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
-
-            BtnLogin.Enabled = true;
-        }
-
-
-        private void BtnCadastro_Click(object sender, EventArgs e)
-        {
-            FrmCadastro frm = new FrmCadastro();
-            this.Visible = false;
-            frm.ShowDialog();
-            this.Visible = true;
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao realizar login: {ex.Message}", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Reabilita o botão independente do resultado
+                BtnLogin.Enabled = true;
+            }
         }
     }
 }

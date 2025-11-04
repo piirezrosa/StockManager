@@ -8,8 +8,27 @@ namespace StockManager
 {
     public static class Sessao
     {
-        public static int UsuarioId { get; set; }
-        public static string NomeUsuario { get; set; }
-        public static string NivelAcesso { get; set; }
+        public static int UsuarioID { get; private set; }
+        public static string NomeUsuario { get; private set; }
+        public static string NivelAcesso { get; private set; }
+
+        public static void IniciarSessao(int id, string nome, string nivel)
+        {
+            UsuarioID = id;
+            NomeUsuario = nome;           
+            NivelAcesso = NivelAcesso;
+        }
+
+        public static void EncerrarSessao()
+        {
+            UsuarioID = 0;
+            NomeUsuario = null;
+            NivelAcesso = null;
+        }
+
+        public static bool SessaoAtiva()
+        {
+            return UsuarioID != 0;
+        }
     }
 }

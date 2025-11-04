@@ -1,6 +1,6 @@
-﻿namespace StockManager
+﻿namespace StockManager.UI
 {
-    partial class FrmStock
+    partial class FrmLogin
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmStock));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.PbxLogin = new System.Windows.Forms.PictureBox();
             this.BtnCadastrarNovo = new System.Windows.Forms.Button();
             this.LblCadastro = new System.Windows.Forms.Label();
@@ -57,7 +57,6 @@
             this.BtnCadastrarNovo.TabIndex = 3;
             this.BtnCadastrarNovo.Text = "Cadastre-se";
             this.BtnCadastrarNovo.UseVisualStyleBackColor = true;
-            this.BtnCadastrarNovo.Click += new System.EventHandler(this.BtnCadastro_Click);
             // 
             // LblCadastro
             // 
@@ -76,7 +75,7 @@
             this.BtnLogin.TabIndex = 2;
             this.BtnLogin.Text = "Fazer Login";
             this.BtnLogin.UseVisualStyleBackColor = true;
-            this.BtnLogin.Click += new System.EventHandler(this.BtnProduct_Click);
+            this.BtnLogin.Click += new System.EventHandler(this.BtnLogin_Click_1);
             // 
             // TxbLogin
             // 
@@ -103,7 +102,7 @@
             this.LblLogin.TabIndex = 0;
             this.LblLogin.Text = "Login e Senha:";
             // 
-            // FrmStock
+            // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -116,7 +115,7 @@
             this.Controls.Add(this.TxbPassword);
             this.Controls.Add(this.BtnCadastrarNovo);
             this.Controls.Add(this.PbxLogin);
-            this.Name = "FrmStock";
+            this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestão de Estoque";
             ((System.ComponentModel.ISupportInitialize)(this.PbxLogin)).EndInit();

@@ -38,7 +38,8 @@
             this.menuSair = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PbxMenu)).BeginInit();
-            //this.menuStripMenu.SuspendLayout();
+            this.menuStripMenu.SuspendLayout();
+            this.SuspendLayout();
             // 
             // PbxMenu
             // 
@@ -57,7 +58,7 @@
             this.menuSair});
             this.menuStripMenu.Location = new System.Drawing.Point(0, 0);
             this.menuStripMenu.Name = "menuStripMenu";
-            this.menuStripMenu.Size = new System.Drawing.Size(800, 24);
+            this.menuStripMenu.Size = new System.Drawing.Size(736, 24);
             this.menuStripMenu.TabIndex = 1;
             this.menuStripMenu.Text = "menuStrip1";
             // 
@@ -74,21 +75,21 @@
             // menuCadastrarProduto
             // 
             this.menuCadastrarProduto.Name = "menuCadastrarProduto";
-            this.menuCadastrarProduto.Size = new System.Drawing.Size(180, 22);
+            this.menuCadastrarProduto.Size = new System.Drawing.Size(170, 22);
             this.menuCadastrarProduto.Text = "Cadastrar produto";
             this.menuCadastrarProduto.Click += new System.EventHandler(this.menuCadastrarProduto_Click_1);
             // 
             // menuConsultarProduto
             // 
             this.menuConsultarProduto.Name = "menuConsultarProduto";
-            this.menuConsultarProduto.Size = new System.Drawing.Size(180, 22);
+            this.menuConsultarProduto.Size = new System.Drawing.Size(170, 22);
             this.menuConsultarProduto.Text = "Consultar";
             this.menuConsultarProduto.Click += new System.EventHandler(this.menuConsultarProduto_Click_1);
             // 
             // menuCadastrarUsuario
             // 
             this.menuCadastrarUsuario.Name = "menuCadastrarUsuario";
-            this.menuCadastrarUsuario.Size = new System.Drawing.Size(180, 22);
+            this.menuCadastrarUsuario.Size = new System.Drawing.Size(170, 22);
             this.menuCadastrarUsuario.Text = "Cadastrar usuario";
             this.menuCadastrarUsuario.Click += new System.EventHandler(this.menuCadastrarUsuario_Click);
             // 
@@ -112,7 +113,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(736, 450);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.menuStripMenu);
             this.Controls.Add(this.PbxMenu);

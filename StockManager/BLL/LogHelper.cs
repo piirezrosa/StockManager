@@ -20,7 +20,7 @@ namespace StockManager
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@UsuarioId", Sessao.UsuarioId); // Corrigido: removido o $
+                        cmd.Parameters.AddWithValue("@UsuarioId", Sessao.UsuarioID); // Corrigido: removido o $
                         cmd.Parameters.AddWithValue("@NomeUsuario", Sessao.NomeUsuario); // Corrigido: removido o $
                         cmd.Parameters.AddWithValue("@Acao", descricao);
                         cmd.Parameters.AddWithValue("@Datahora", DateTime.Now); // Corrigido: DateTime.Now

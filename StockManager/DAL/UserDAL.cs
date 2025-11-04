@@ -5,56 +5,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-namespace StockManager
+using StockManager.Models;
+using StockManager.DAL;
+namespace StockManager.DAL
 {
-    internal class UserDAL
+    public class UserDAL
     {
-        private readonly string connectionString =
-            "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
+        private readonly ConexaoBD conexao = new ConexaoBD();
 
-        public string LoginVerification(string login, string senha)
+        public User ObterUsuarioPorLogin(string login)
         {
-            try
+            using (var conn = conexao.AbrirConexao())
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                string sql = "SELECT * FROM Usuarios WHERE Login = @login";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    conn.Open();
+                    cmd.Parameters.AddWithValue("@login", login);
+                    SqlDataReader dr = cmd.ExecuteReader();
 
-                    bool loginValido = SegurancaHelper.ValidarLogin(login, senha, conn);
-
-                    if (loginValido)
+                    if (dr.Read())
                     {
-                        // Recupera informações do usuário logado
-                        string query = "SELECT id, Nome, NivelAcesso FROM Usuarios WHERE Login = @login";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        return new User
                         {
-                            cmd.Parameters.AddWithValue("@login", login);
-                            using (SqlDataReader reader = cmd.ExecuteReader())
-                            {
-                                if (reader.Read())
-                                {
-                                    Sessao.UsuarioId = Convert.ToInt32(reader["id"]);
-                                    Sessao.NomeUsuario = reader["Nome"].ToString();
-                                    Sessao.NivelAcesso = reader["NivelAcesso"].ToString();
-                                }
-                            }
-                        }
-
-                        LogHelper.RegistrarLog($"Login realizado com sucesso por {Sessao.NomeUsuario}");
-                        return $"Bem-vindo {Sessao.NomeUsuario}!";
+                            Id = (int)dr["Id"],
+                            Name = dr["Nome"].ToString(),
+                            Login = dr["Login"].ToString(),
+                            Password = dr["SenhaHash"].ToString(),
+                            AccessLevel = dr["NivelAcesso"].ToString()
+                        };
                     }
-
-                    LogHelper.RegistrarLog($"Tentativa de login falhou para o usuário {login}");
-                    return "Usuário ou senha inválidos!";
                 }
             }
-            catch (Exception ex)
+            return null;
+        }
+
+        public void InserirUsuario(User u)
+        {
+            using (var conn = conexao.AbrirConexao())
             {
-                LogHelper.RegistrarLog($"Erro ao tentar login: {ex.Message}");
-                return "Ocorreu um erro ao processar o login.";
+                string sql = "INSERT INTO Usuarios (Nome, Login, SenhaHash, NivelAcesso) VALUES (@n, @l, @s, @a)";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@n", u.Name);
+                    cmd.Parameters.AddWithValue("@l", u.Login);
+                    cmd.Parameters.AddWithValue("@s", u.Password);
+                    cmd.Parameters.AddWithValue("@a", u.AccessLevel);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
     }
-
 }

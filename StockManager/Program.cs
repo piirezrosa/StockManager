@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StockManager.UI;
 
 namespace StockManager
 {
@@ -16,7 +17,7 @@ namespace StockManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmStock());
+            Application.Run(new FrmLogin());
         }
     }
 }
