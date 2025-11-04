@@ -43,8 +43,8 @@
             this.DtpDataFab = new System.Windows.Forms.DateTimePicker();
             this.PbxRegisterProduct = new System.Windows.Forms.PictureBox();
             this.registroProdutoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cJ3027597PR2DataSet = new StockManager.CJ3027597PR2DataSet();
-            this.registroProdutoTableAdapter = new StockManager.CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter();
+            this.cJ3027597PR2DataSet = new StockManager.DAL.CJ3027597PR2DataSet();
+            this.registroProdutoTableAdapter = new StockManager.DAL.CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter();
             this.LblRegisterProduct = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PbxRegisterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registroProdutoBindingSource)).BeginInit();
@@ -217,9 +217,9 @@
         private System.Windows.Forms.Label LblDataVal;
         private System.Windows.Forms.Label LblDataReceb;
         private System.Windows.Forms.PictureBox PbxRegisterProduct;
-        private CJ3027597PR2DataSet cJ3027597PR2DataSet;
+        private DAL.CJ3027597PR2DataSet cJ3027597PR2DataSet;
         private System.Windows.Forms.BindingSource registroProdutoBindingSource;
-        private CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter registroProdutoTableAdapter;
+        private DAL.CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter registroProdutoTableAdapter;
         private System.Windows.Forms.Label LblRegisterProduct;
         private System.Windows.Forms.DateTimePicker DtpDataFab;
         private System.Windows.Forms.DateTimePicker DtpDataReceb;

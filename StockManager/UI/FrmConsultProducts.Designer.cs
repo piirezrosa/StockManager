@@ -39,7 +39,7 @@
             this.dataRecebDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Excluir = new System.Windows.Forms.DataGridViewButtonColumn();
             this.registroProdutoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cJ3027597PR2DataSet = new StockManager.CJ3027597PR2DataSet();
+            this.cJ3027597PR2DataSet = new StockManager.DAL.CJ3027597PR2DataSet();
             this.LblConsultProducts = new System.Windows.Forms.Label();
             this.BtnRechargeConsultProducts = new System.Windows.Forms.Button();
             this.PnlConsultProducts = new System.Windows.Forms.Panel();
@@ -48,7 +48,7 @@
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.TxbBuscarNome = new System.Windows.Forms.TextBox();
             this.PbxConsultProducts = new System.Windows.Forms.PictureBox();
-            this.registroProdutoTableAdapter = new StockManager.CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter();
+            this.registroProdutoTableAdapter = new StockManager.DAL.CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.DgvConsultProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registroProdutoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cJ3027597PR2DataSet)).BeginInit();
@@ -256,9 +256,9 @@
         private System.Windows.Forms.Button BtnRechargeConsultProducts;
         private System.Windows.Forms.Panel PnlConsultProducts;
         private System.Windows.Forms.PictureBox PbxConsultProducts;
-        private CJ3027597PR2DataSet cJ3027597PR2DataSet;
+        private DAL.CJ3027597PR2DataSet cJ3027597PR2DataSet;
         private System.Windows.Forms.BindingSource registroProdutoBindingSource;
-        private CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter registroProdutoTableAdapter;
+        private DAL.CJ3027597PR2DataSetTableAdapters.RegistroProdutoTableAdapter registroProdutoTableAdapter;
         private System.Windows.Forms.TextBox TxbBuscarNome;
         private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;

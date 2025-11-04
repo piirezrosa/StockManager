@@ -10,27 +10,51 @@ namespace StockManager
 {
     internal class UserDAL
     {
-        public string LoginVerification(string login, string pass)
+        private readonly string connectionString =
+            "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
+
+        public string LoginVerification(string login, string senha)
         {
-            string connectionString =
-                "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
-
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            try
             {
-                conexao.Open();
-
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    bool loginValido = SegurancaHelper.ValidarLogin(login, pass, conn);
+
+                    bool loginValido = SegurancaHelper.ValidarLogin(login, senha, conn);
 
                     if (loginValido)
                     {
+                        // Recupera informações do usuário logado
+                        string query = "SELECT id, Nome, NivelAcesso FROM Usuarios WHERE Login = @login";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@login", login);
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    Sessao.UsuarioId = Convert.ToInt32(reader["id"]);
+                                    Sessao.NomeUsuario = reader["Nome"].ToString();
+                                    Sessao.NivelAcesso = reader["NivelAcesso"].ToString();
+                                }
+                            }
+                        }
+
+                        LogHelper.RegistrarLog($"Login realizado com sucesso por {Sessao.NomeUsuario}");
                         return $"Bem-vindo {Sessao.NomeUsuario}!";
                     }
-                 return "Usuário ou senha inválidos!";
+
+                    LogHelper.RegistrarLog($"Tentativa de login falhou para o usuário {login}");
+                    return "Usuário ou senha inválidos!";
                 }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.RegistrarLog($"Erro ao tentar login: {ex.Message}");
+                return "Ocorreu um erro ao processar o login.";
             }
         }
     }
+
 }
