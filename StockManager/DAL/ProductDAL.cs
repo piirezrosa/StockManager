@@ -8,7 +8,7 @@ using StockManager.Models;
 
 namespace StockManager.DAL
 {
-        public class ProdutoDAL
+        public class ProductDAL
         {
             private readonly ConexaoBD conexao = new ConexaoBD();
 
@@ -16,7 +16,7 @@ namespace StockManager.DAL
             {
                 using (var conn = conexao.AbrirConexao())
                 {
-                    string sql = @"INSERT INTO Produtos (Nome, Quantidade, DataFabricacao, DataValidade, DataRecebimento)
+                    string sql = @"INSERT INTO RegistroProduto (Produto, Quantidade, DataFab, DataVal, DataReceb)
                                VALUES (@n, @q, @df, @dv, @dr)";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
@@ -35,7 +35,7 @@ namespace StockManager.DAL
                 List<Product> lista = new List<Product>();
                 using (var conn = conexao.AbrirConexao())
                 {
-                    string sql = "SELECT * FROM Produtos";
+                    string sql = "SELECT * FROM RegistroProduto";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         SqlDataReader dr = cmd.ExecuteReader();
@@ -44,11 +44,11 @@ namespace StockManager.DAL
                             lista.Add(new Product
                             {
                                 Id = (int)dr["Id"],
-                                Nome = dr["Nome"].ToString(),
+                                Nome = dr["Produto"].ToString(),
                                 Quantidade = (int)dr["Quantidade"],
-                                DataFabricacao = (DateTime)dr["DataFabricacao"],
-                                DataValidade = (DateTime)dr["DataValidade"],
-                                DataRecebimento = (DateTime)dr["DataRecebimento"]
+                                DataFabricacao = (DateTime)dr["DataFab"],
+                                DataValidade = (DateTime)dr["DataVal"],
+                                DataRecebimento = (DateTime)dr["DataReceb"]
                             });
                         }
                     }

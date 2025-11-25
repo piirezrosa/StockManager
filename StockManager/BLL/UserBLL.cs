@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,34 +16,34 @@ namespace StockManager.BLL
 
         public bool ValidarLogin(string usuario, string senha, SqlConnection conn)
         {
+            var user = usuarioDAL.ObterUsuarioPorLogin(usuario);
+            if (user == null)
+            {
+                SecurityHelper.RegistrarLog("Usuário não encontrado");
+                return false;
+            }
+
             string senhaHash = SecurityHelper.GerarHash(senha);
 
-            string sql = "SELECT * FROM Usuarios WHERE Login=@usuario AND Senha=@senha";
-            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            if (user.Password != senhaHash)
             {
-                cmd.Parameters.AddWithValue("@usuario", usuario);
-                cmd.Parameters.AddWithValue("@senha", senhaHash);
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        Sessao.IniciarSessao(Convert.ToInt32(reader["Id"]), reader["Nome"].ToString(), reader["NivelAcesso"].ToString());
-                        // Log de login
-                        SecurityHelper.RegistrarLog("Login realizado com sucesso");
-                        return true;
-                    }
-                }
+                SecurityHelper.RegistrarLog("Senha incorreta");
+                return false;
             }
-            // Se não encontrou, registra tentativa
-            SecurityHelper.RegistrarLog("Tentativa de login falhou");
-            return false;
+            Sessao.IniciarSessao(user.Id, user.Name, user.AccessLevel);
+            SecurityHelper.RegistrarLog("Login realizado com sucesso");
+            return true;
         }
 
         public void CadastrarUsuario(User u)
         {
-            u.Password = Criptography.GerarHash(u.Password);
+            u.Password = SecurityHelper.GerarHash(u.Password);
+            if (usuarioDAL.ObterUsuarioPorLogin(u.Login) != null)
+            {
+                throw new Exception("Este login já existe!");
+            }
             usuarioDAL.InserirUsuario(u);
+            SecurityHelper.RegistrarLog($"Usuário cadastrado: {u.Login}");
         }
     }
 }

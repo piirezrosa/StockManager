@@ -30,7 +30,7 @@ namespace StockManager.DAL
                             Id = (int)dr["Id"],
                             Name = dr["Nome"].ToString(),
                             Login = dr["Login"].ToString(),
-                            Password = dr["SenhaHash"].ToString(),
+                            Password = dr["Senha"].ToString(),
                             AccessLevel = dr["NivelAcesso"].ToString()
                         };
                     }
@@ -43,7 +43,7 @@ namespace StockManager.DAL
         {
             using (var conn = conexao.AbrirConexao())
             {
-                string sql = "INSERT INTO Usuarios (Nome, Login, SenhaHash, NivelAcesso) VALUES (@n, @l, @s, @a)";
+                string sql = "INSERT INTO Usuarios (Nome, Login, Senha, NivelAcesso) VALUES (@n, @l, @s, @a)";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@n", u.Name);

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StockManager.BLL;
 
 namespace StockManager
 {
@@ -28,6 +29,8 @@ namespace StockManager
 
         private void FrmConsultProducts_Load(object sender, EventArgs e)
         {
+            ProductBLL bll = new ProductBLL();
+            DgvConsultProducts.DataSource = bll.ObterProdutos();
             CarregarProdutos(null);
             DgvConsultProducts.EnableHeadersVisualStyles = false;
             DgvConsultProducts.DefaultCellStyle.SelectionBackColor = Color.Blue;
@@ -155,7 +158,7 @@ namespace StockManager
                         cmd.ExecuteNonQuery();
                     }
                 }
-                LogHelper.RegistrarLog($"Atualizou produto ID {id}");
+                SecurityHelper.RegistrarLog($"Atualizou produto ID {id}");
                 MessageBox.Show("Produto atualizado com sucesso!");
 
             }
@@ -170,7 +173,7 @@ namespace StockManager
                 DialogResult result = MessageBox.Show($"Deseja excluir o produto {produto}?", "Confirmar exclusão", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    LogHelper.RegistrarLog($"Excluiu produto ID {id}");
+                    SecurityHelper.RegistrarLog($"Excluiu produto ID {id}");
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
                         conn.Open();

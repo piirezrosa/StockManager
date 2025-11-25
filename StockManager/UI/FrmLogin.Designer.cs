@@ -57,6 +57,7 @@
             this.BtnCadastrarNovo.TabIndex = 3;
             this.BtnCadastrarNovo.Text = "Cadastre-se";
             this.BtnCadastrarNovo.UseVisualStyleBackColor = true;
+            this.BtnCadastrarNovo.Click += new System.EventHandler(this.BtnCadastrarNovo_Click);
             // 
             // LblCadastro
             // 
@@ -118,6 +119,7 @@
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestão de Estoque";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmLogin_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.PbxLogin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

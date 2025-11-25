@@ -52,6 +52,8 @@ namespace StockManager
 
         private void menuSair_Click_1(object sender, EventArgs e)
         {
+            Sessao.EncerrarSessao();
+            MessageBox.Show("Sessão encerrada!");
             this.Close();
         }
 

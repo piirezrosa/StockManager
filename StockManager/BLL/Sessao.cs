@@ -16,7 +16,7 @@ namespace StockManager
         {
             UsuarioID = id;
             NomeUsuario = nome;           
-            NivelAcesso = NivelAcesso;
+            NivelAcesso = nivel;
         }
 
         public static void EncerrarSessao()

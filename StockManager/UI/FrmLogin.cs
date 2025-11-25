@@ -72,6 +72,24 @@ namespace StockManager.UI
                 // Reabilita o botão independente do resultado
                 BtnLogin.Enabled = true;
             }
+            if (!Sessao.SessaoAtiva())
+            {
+                MessageBox.Show("É necessário fazer login.");
+                this.Close();
+            }
+        }
+
+        private void BtnCadastrarNovo_Click(object sender, EventArgs e)
+        {
+            FrmCadastro cadastro = new FrmCadastro();
+            this.Hide();
+            cadastro.ShowDialog();
+            this.Show();
+        }
+
+        private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Sessao.EncerrarSessao();
         }
     }
 }

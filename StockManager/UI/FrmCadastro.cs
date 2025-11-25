@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StockManager.BLL;
 
 namespace StockManager
 {
     public partial class FrmCadastro : Form
     {
-        string usuario = Sessao.NomeUsuario;
         public FrmCadastro()
         {
             InitializeComponent();
@@ -25,32 +25,29 @@ namespace StockManager
             if (string.IsNullOrWhiteSpace(TxbNewName.Text) ||
                 string.IsNullOrWhiteSpace(TxbNewLogin.Text) ||
                 string.IsNullOrWhiteSpace(TxbNewPassword.Text) ||
-                CmbNivelAcesso.SelectedIndex == -1)
+                string.IsNullOrWhiteSpace(CmbNivelAcesso.Text))
             {
-                MessageBox.Show("Preencha todos os campos!");
+                MessageBox.Show("Preencha todos os campos antes de cadastrar!");
                 return;
             }
-
-            string connectionString =
-                "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            User u = new User
             {
-                conn.Open();
-                string query = "INSERT INTO Usuarios (Nome, Login, Senha, NivelAcesso) VALUES (@Nome, @Login, @Senha, @NivelAcesso)";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Nome", TxbNewName.Text);
-                cmd.Parameters.AddWithValue("@Login", TxbNewLogin.Text);
-                cmd.Parameters.AddWithValue("@Senha", SecurityHelper.GerarHash(TxbNewPassword.Text)); // depois pode aplicar hash
-                cmd.Parameters.AddWithValue("@NivelAcesso", CmbNivelAcesso.SelectedItem.ToString());
-                cmd.ExecuteNonQuery();
+                Name = TxbNewName.Text,
+                Login = TxbNewLogin.Text,
+                Password = TxbNewPassword.Text,
+                AccessLevel = CmbNivelAcesso.Text
+            };
+
+            try
+            {
+                UserBLL bll = new UserBLL();
+                bll.CadastrarUsuario(u);
                 MessageBox.Show("Usuário cadastrado com sucesso!");
             }
-
-            TxbNewName.Clear();
-            TxbNewLogin.Clear();
-            TxbNewPassword.Clear();
-            CmbNivelAcesso.SelectedIndex = -1;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

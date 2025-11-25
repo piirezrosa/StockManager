@@ -43,7 +43,7 @@ namespace StockManager
                 cmd.Parameters.AddWithValue("@Senha", TxbSenhaCadastroFunc.Text); // depois pode aplicar hash
                 cmd.Parameters.AddWithValue("@NivelAcesso", CmbAcessoCadastroFunc.SelectedItem.ToString());
                 cmd.ExecuteNonQuery();
-                LogHelper.RegistrarLog("Cadastrou usuário");
+                SecurityHelper.RegistrarLog("Cadastrou usuário");
                 MessageBox.Show("Usuário cadastrado com sucesso!");
             }
 

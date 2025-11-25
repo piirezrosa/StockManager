@@ -26,25 +26,31 @@ namespace StockManager
         {
             string connectionString =
                 "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                string sql = @"INSERT INTO Logs 
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = @"INSERT INTO Logs 
                                (UsuarioId, NomeUsuario, Acao, DataHora, IpMaquina, NomeMaquina) 
                                VALUES (@UsuarioId, @NomeUsuario, @Acao, @DataHora, @IpMaquina, @NomeMaquina)";
 
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@UsuarioId", Sessao.UsuarioID);
-                    cmd.Parameters.AddWithValue("@NomeUsuario", Sessao.NomeUsuario ?? "Não logado");
-                    cmd.Parameters.AddWithValue("@Acao", acao);
-                    cmd.Parameters.AddWithValue("@DataHora", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@IpMaquina", Dns.GetHostAddresses(Dns.GetHostName())[0].ToString());
-                    cmd.Parameters.AddWithValue("@NomeMaquina", Environment.MachineName);
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UsuarioId", Sessao.UsuarioID);
+                        cmd.Parameters.AddWithValue("@NomeUsuario", Sessao.NomeUsuario ?? "Não logado");
+                        cmd.Parameters.AddWithValue("@Acao", acao);
+                        cmd.Parameters.AddWithValue("@DataHora", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@IpMaquina", Dns.GetHostAddresses(Dns.GetHostName())[0].ToString());
+                        cmd.Parameters.AddWithValue("@NomeMaquina", Environment.MachineName);
 
-                    cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao registrar log: {ex.Message}");
             }
         }
     }
