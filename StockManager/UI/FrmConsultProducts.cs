@@ -14,8 +14,7 @@ namespace StockManager
 {
     public partial class FrmConsultProducts : Form
     {
-        string usuario = Sessao.NomeUsuario;
-        private string connectionString = "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
+        ProductBLL bll = new ProductBLL();
         public FrmConsultProducts()
         {
             InitializeComponent();
@@ -24,14 +23,19 @@ namespace StockManager
             BtnBuscar.Click += BtnBuscar_Click;
             BtnRechargeConsultProducts.Click += BtnRechargeConsultProducts_Click;
 
-            TxbBuscarNome.KeyDown += (s, e) => { if (e.KeyCode == Keys.Enter) BtnBuscar.PerformClick(); };
+            TxbBuscarNome.KeyDown += (s, e) => 
+            { if (e.KeyCode == Keys.Enter) 
+                  BtnBuscar.PerformClick(); 
+            };
+
+            DgvConsultProducts.CellValueChanged += DgvConsultProducts_CellValueChanged;
+            DgvConsultProducts.CellContentClick += DgvConsultProducts_CellContentClick;
         }
 
         private void FrmConsultProducts_Load(object sender, EventArgs e)
         {
-            ProductBLL bll = new ProductBLL();
-            DgvConsultProducts.DataSource = bll.ObterProdutos();
-            CarregarProdutos(null);
+            CarregarProdutos();
+
             DgvConsultProducts.EnableHeadersVisualStyles = false;
             DgvConsultProducts.DefaultCellStyle.SelectionBackColor = Color.Blue;
             DgvConsultProducts.DefaultCellStyle.SelectionForeColor = Color.White;
@@ -40,36 +44,12 @@ namespace StockManager
         private void BtnRechargeConsultProducts_Click(object sender, EventArgs e)
         {
             TxbBuscarNome.Clear();
-            CarregarProdutos(null);
+            CarregarProdutos();
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             CarregarProdutos(TxbBuscarNome.Text?.Trim());
-            string query = "SELECT * FROM RegistroProduto WHERE 1=1";
-
-            if (!string.IsNullOrWhiteSpace(TxbBuscarNome.Text))
-                query += " AND Produto LIKE @Nome";
-
-            if (chkLowStock.Checked)
-                query += " AND Quantidade < 10"; // exemplo de estoque baixo
-
-            if (chkExpirySoon.Checked)
-                query += " AND DataVal <= DATEADD(DAY, 30, GETDATE())"; // próximos 30 dias
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
-            {
-                if (!string.IsNullOrWhiteSpace(TxbBuscarNome.Text))
-                    cmd.Parameters.AddWithValue("@Nome", "%" + TxbBuscarNome.Text + "%");
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                DgvConsultProducts.DataSource = dt;
-            }
-            if(chkExpirySoon.Checked)
-                ChangeCellColor();
         }
 
         private void ChangeCellColor()
@@ -96,34 +76,23 @@ namespace StockManager
             }
         }
 
-        private void CarregarProdutos(string nome = "")
+        private void CarregarProdutos(string filterName = "")
         {
+            var lista = bll.ObtainProducts();
 
+            if (!string.IsNullOrWhiteSpace(filterName))
+                lista = lista.Where(p => !string.IsNullOrEmpty(p.Nome) && p.Nome.IndexOf(filterName, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
 
-            using (SqlConnection conexao = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    conexao.Open();
+            if (chkLowStock.Checked)
+                lista = lista.Where(p => p.Quantidade < 10).ToList();
 
-                    string query = @"SELECT Id, Produto, Quantidade, DataFab, DataVal, DataReceb 
-                                     FROM RegistroProduto
-                                     WHERE Produto LIKE @nome";
+            if (chkExpirySoon.Checked)
+                lista = lista.Where(p => p.DataValidade <= DateTime.Now.AddDays(30)).ToList();
+        
+            DgvConsultProducts.DataSource = lista;
 
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conexao);
-                    adapter.SelectCommand.Parameters.AddWithValue("@nome", "%" + nome + "%");
-
-                    DataTable tabela = new DataTable();
-                    adapter.Fill(tabela);
-
-                    DgvConsultProducts.DataSource = tabela;
-                    DgvConsultProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao carregar produtos: " + ex.Message);
-                }
-            }
+            if (chkExpirySoon.Checked)
+                ChangeCellColor();
         }
 
         private void DgvConsultProducts_CellValueChanged(object sender, DataGridViewCellEventArgs e)

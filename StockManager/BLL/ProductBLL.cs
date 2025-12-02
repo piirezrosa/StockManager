@@ -34,9 +34,38 @@ namespace StockManager.BLL
             SecurityHelper.RegistrarLog($"Produto '{p.Nome}' cadastrado.");
         }
 
-        public List<Product> ObterProdutos()
+        public List<Product> ObtainProducts(string name = null)
         {
-            return dal.ListarProdutos();
+            if (string.IsNullOrWhiteSpace(name))
+                return dal.ListarProdutos();
+
+            return dal.SearchPerName(name);
+        }
+
+        public void UpdateProduct(Product p)
+        {
+            if (string.IsNullOrWhiteSpace(p.Nome))
+                throw new Exception("O nome não pode ser vazio.");
+
+            if (p.Quantidade <= 0)
+                throw new Exception("Quantidade inválida.");
+
+            if (p.DataValidade <= p.DataFabricacao)
+                throw new Exception("A validade deve ser maior que a fabricação.");
+
+            dal.UpdateProduct(p);
+
+            SecurityHelper.RegistrarLog($"Atualizou produto ID {p.Id}");
+        }
+
+        public void DeleteProduct(int id)
+        {
+            if (id <= 0)
+                throw new Exception("ID inválido para exclusão.");
+
+            dal.DeleteProduct(id);
+
+            SecurityHelper.RegistrarLog($"Excluiu produto ID {id}");
         }
     }
 }

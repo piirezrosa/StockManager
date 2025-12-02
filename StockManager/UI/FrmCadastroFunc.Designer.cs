@@ -57,7 +57,7 @@
             // 
             this.LblCadastroFunc.AutoSize = true;
             this.LblCadastroFunc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCadastroFunc.Location = new System.Drawing.Point(304, 105);
+            this.LblCadastroFunc.Location = new System.Drawing.Point(303, 128);
             this.LblCadastroFunc.Name = "LblCadastroFunc";
             this.LblCadastroFunc.Size = new System.Drawing.Size(210, 20);
             this.LblCadastroFunc.TabIndex = 1;
