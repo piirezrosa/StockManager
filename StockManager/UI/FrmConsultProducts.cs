@@ -97,40 +97,7 @@ namespace StockManager
 
         private void DgvConsultProducts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > 0)
-            {
-                DataGridViewRow row = DgvConsultProducts.Rows[e.RowIndex];
-
-                int id = int.Parse(row.Cells[0].Value.ToString());
-                string produto = row.Cells[1].Value.ToString();
-                int quantidade = int.Parse(row.Cells[2].Value.ToString());
-                DateTime dataFab = DateTime.Parse(row.Cells[3].Value.ToString());
-                DateTime dataVal = DateTime.Parse(row.Cells[4].Value.ToString());
-                DateTime dataReceb = DateTime.Parse(row.Cells[5].Value.ToString());
-
-                string query = @"UPDATE RegistroProduto 
-                     SET Produto = @Produto, Quantidade = @Quantidade, DataFab = @DataFab, DataVal = @DataVal, DataReceb = @DataReceb
-                     WHERE Id = @Id";
-
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Id", id);
-                        cmd.Parameters.AddWithValue("@Produto", produto);
-                        cmd.Parameters.AddWithValue("@Quantidade", quantidade);
-                        cmd.Parameters.AddWithValue("@DataFab", dataFab);
-                        cmd.Parameters.AddWithValue("@DataVal", dataVal);
-                        cmd.Parameters.AddWithValue("@DataReceb", dataReceb);
-
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                SecurityHelper.RegistrarLog($"Atualizou produto ID {id}");
-                MessageBox.Show("Produto atualizado com sucesso!");
-
-            }
+           
         }
 
         private void DgvConsultProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
