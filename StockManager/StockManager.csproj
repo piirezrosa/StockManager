@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\LogBLL.cs" />
     <Compile Include="BLL\ProductBLL.cs" />
     <Compile Include="BLL\UserBLL.cs" />
     <Compile Include="DAL\CJ3027597PR2DataSet.Designer.cs">
@@ -54,10 +55,10 @@
       <DependentUpon>CJ3027597PR2DataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DAL\ConexaoBD.cs" />
+    <Compile Include="DAL\LogDAL.cs" />
     <Compile Include="DAL\ProductDAL.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="UI\FrmCadastroFunc.cs">
       <SubType>Form</SubType>
     </Compile>

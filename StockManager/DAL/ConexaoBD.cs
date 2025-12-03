@@ -7,7 +7,7 @@ namespace StockManager.DAL
     public class ConexaoBD
     {
         private readonly string connectionString =
-            "Data Source=sqlexpress;Initial Catalog=CJ3027597PR2;User Id=aluno;Password=aluno;";
+            @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CJ3027597PR2;Integrated Security=True;";
 
         public SqlConnection AbrirConexao()
         {
