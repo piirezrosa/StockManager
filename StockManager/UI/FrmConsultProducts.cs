@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using StockManager.BLL;
+using StockManager.Models;
+using StockManager.UI;
 
 namespace StockManager
 {
@@ -35,7 +37,7 @@ namespace StockManager
         private void FrmConsultProducts_Load(object sender, EventArgs e)
         {
             CarregarProdutos();
-
+            ShowLowStockAlert();
             DgvConsultProducts.EnableHeadersVisualStyles = false;
             DgvConsultProducts.DefaultCellStyle.SelectionBackColor = Color.Blue;
             DgvConsultProducts.DefaultCellStyle.SelectionForeColor = Color.White;
@@ -50,6 +52,7 @@ namespace StockManager
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             CarregarProdutos(TxbBuscarNome.Text?.Trim());
+            ShowLowStockAlert();
         }
 
         private void ChangeCellColor()
@@ -97,34 +100,49 @@ namespace StockManager
 
         private void DgvConsultProducts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-           
+            if (e.RowIndex < 0) return;
+
+            var row = DgvConsultProducts.Rows[e.RowIndex];
+
+            Product p = new Product
+            {
+                Id = (int)row.Cells["Id"].Value,
+                Nome = row.Cells["Produto"].Value.ToString(),
+                Quantidade = Convert.ToInt32(row.Cells["Quantidade"].Value),
+                DataFabricacao = Convert.ToDateTime(row.Cells["DataFab"].Value),
+                DataValidade = Convert.ToDateTime(row.Cells["DataVal"].Value),
+                DataRecebimento = Convert.ToDateTime(row.Cells["DataReceb"].Value)
+            };
+
+            try
+            {
+                bll.UpdateProduct(p);
+                MessageBox.Show("Produto atualizado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao atualizar: " + ex.Message);
+            }
         }
 
         private void DgvConsultProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (DgvConsultProducts.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            if (e.RowIndex < 0) return;
+
+            if (DgvConsultProducts.Columns[e.ColumnIndex] is DataGridViewButtonColumn)
             {
-                string produto = DgvConsultProducts.Rows[e.RowIndex].Cells[1].Value.ToString();
-                int id = int.Parse(DgvConsultProducts.Rows[e.RowIndex].Cells[0].Value.ToString());
-                DialogResult result = MessageBox.Show($"Deseja excluir o produto {produto}?", "Confirmar exclusão", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
+                int id = (int)DgvConsultProducts.Rows[e.RowIndex].Cells["Id"].Value;
+                string nome = DgvConsultProducts.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
+
+                if (MessageBox.Show($"Excluir produto '{nome}'?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    SecurityHelper.RegistrarLog($"Excluiu produto ID {id}");
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-                        conn.Open();
-                        string query = "DELETE FROM RegistroProduto WHERE Produto = @Produto";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@Produto", produto);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                    DgvConsultProducts.Rows.RemoveAt(e.RowIndex);
-                    MessageBox.Show("Produto excluído com sucesso!");
+                    bll.DeleteProduct(id);
+                    MessageBox.Show("Produto excluído.");
+                    CarregarProdutos();
                 }
             }
         }
+
         private void DgvConsultProducts_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (DgvConsultProducts.Columns[e.ColumnIndex].Name == "DataVal")
@@ -149,6 +167,19 @@ namespace StockManager
         private void chkExpirySoon_CheckedChanged(object sender, EventArgs e)
         {
             ChangeCellColor();
+        }
+
+        private void ShowLowStockAlert()
+        {
+            var lowStock = bll.GetLowStockProducts();
+
+            if (lowStock.Count == 0)
+                return;
+
+            string message = $"⚠ Existem {lowStock.Count} produtos com baixo estoque!";
+
+            FrmNotification alert = new FrmNotification(message);
+            alert.Show();
         }
     }
 }

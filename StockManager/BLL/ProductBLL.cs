@@ -67,5 +67,11 @@ namespace StockManager.BLL
 
             SecurityHelper.RegistrarLog($"Excluiu produto ID {id}");
         }
+
+        public List<Product> GetLowStockProducts(int limit = 10)
+        {
+            var products = dal.ListarProdutos();
+            return products.Where(p => p.Quantidade <= limit).ToList();
+        }
     }
 }

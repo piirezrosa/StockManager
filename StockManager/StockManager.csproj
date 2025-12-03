@@ -88,6 +88,12 @@
     <Compile Include="UI\FrmMenu.Designer.cs">
       <DependentUpon>FrmMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\FrmNotification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmNotification.Designer.cs">
+      <DependentUpon>FrmNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FrmRegistroProduto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmMenu.resx">
       <DependentUpon>FrmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmNotification.resx">
+      <DependentUpon>FrmNotification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmRegistroProduto.resx">
       <DependentUpon>FrmRegistroProduto.cs</DependentUpon>
